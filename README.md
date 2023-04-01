@@ -1,17 +1,25 @@
 # VscodeExtention
-
-- Material Icon Theme
-- Auto import
-- Auto Rename Tag
-- CSS Peek
-- Eslint
-- HTML CSS Support
-- HTML to CSS autocompletion
-- htmltagwrap
-- Prettier - Code formatter
-- Prettier ESLint
-- Reactjs code snippets
-- vscode-styled-components
+- 필수
+  - Eslint
+  - Prettier - Code formatter
+  - Prettier ESLint
+- 추천
+  - Material Icon Theme
+    - icon이 이뻐짐
+  - Auto import
+    - 자동으로 모듈을 가져옴
+  - Auto Rename Tag
+    - 태그 이름 바꿀때 반대편 태그 이름도 동시에 바뀜
+  - CSS Peek
+    - 클래스, ID로 CSS코드 검색할 수 있음. 해당 CSS 파일 위치로 이동
+  - HTML to CSS autocompletion
+    - HTML태그, CSS 스타일 속성 자동완성
+  - htmltagwrap
+    - 선택한 텍스트를 감싸는 적절한 HTML 태그를 자동으로 삽입
+  - Reactjs code snippets
+    - 리액트 고수되는 길 (rsc 치고 엔터누르면 자동으로 함수형 컴포넌트 생성해줌. 더 많은 기능 검색하면나옴)
+  - vscode-styled-components
+    - styled-components 쓸 때 개발 속도 빨라짐
   <br />
   <br />
 
