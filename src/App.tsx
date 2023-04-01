@@ -1,5 +1,5 @@
-import "./App.css";
-import SettingTest from "./SettingTest";
+import './App.css';
+import SettingTest from './SettingTest';
 
 function App() {
   return (
