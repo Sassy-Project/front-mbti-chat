@@ -1,5 +1,5 @@
 const SettingTest = () => {
-  return <div>hi</div>;
+  return <div>issues Test</div>;
 };
 
 export default SettingTest;
