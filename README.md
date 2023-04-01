@@ -85,3 +85,4 @@
 13. git pull origin develop
 14. git branch feature/login
 15. git checkout feature/login -- 반복
+<<<<<<< HEAD
