@@ -1,12 +1,12 @@
 import './App.css';
 import SettingTest from './SettingTest';
 
-function App() {
+const App = () => {
   return (
     <div>
       <SettingTest />
     </div>
   );
-}
+};
 
 export default App;
