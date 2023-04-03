@@ -31,24 +31,17 @@
   <br/>
   <br/>
 # 안건
-## 상태관리 라이브러리
-- Redux
-- MobX
-- Recoil
-## CSS 라이브러리
-- SCSS
-- Styled-components
-## 비동기 호출 라이브러리
-- Ajax
-- Axios
-## Test 라이브러리
-- Jest
-- React Testing Library
-- Enzyme
-## 폴더구조화
-## Code Formatter
-- Eslint
-- Prettier
+
+## 기술
+ - React, Typescript
+ - Redux
+ - Axios, React Testing Library
+ - SCSS, styled-components
+ - AWS S3, cli
+ - Github Actions CI
+ - notion, slack
+ - Eslint, Prettier
+
 ## git convention
 - commit convention
   - feat: Update login button
