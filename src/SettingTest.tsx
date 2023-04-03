@@ -1,10 +1,5 @@
 const SettingTest = () => {
-  return (
-    <>
-      <div>슬랙 테스트 1</div>
-      <div>슬랙 테스트 1</div>
-    </>
-  );
+  return <div>보이면 AWS 자동화 테스트 성공</div>;
 };
 
 export default SettingTest;

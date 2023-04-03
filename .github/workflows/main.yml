@@ -2,13 +2,12 @@
 name: develop
 
 on:
-  push : # 테스트용
   pull_request:
     types: [closed]
     branches: [develop] 
 
 jobs:
-  build:
+  build and deploy to master:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code
