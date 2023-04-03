@@ -2,6 +2,7 @@
 name: develop
 
 on:
+  push : # 테스트용
   pull_request:
     types: [closed]
     branches: [develop] 
