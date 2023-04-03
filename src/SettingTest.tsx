@@ -1,5 +1,5 @@
 const SettingTest = () => {
-  return <div>보이면 AWS 자동화 테스트 성공!!</div>;
+  return <div>로그인 페이지 작성완료</div>;
 };
 
 export default SettingTest;
