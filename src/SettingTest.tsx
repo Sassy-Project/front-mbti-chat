@@ -1,8 +1,8 @@
 const SettingTest = () => {
   return (
     <>
-      <div>무한스크롤 작업중 ..</div>
-      <div>무한스크롤 작업중 ..</div>
+      <div>슬랙 테스트 1</div>
+      <div>슬랙 테스트 1</div>
     </>
   );
 };
