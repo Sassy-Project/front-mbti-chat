@@ -1,5 +1,5 @@
 const SettingTest = () => {
-  return <div>로그인 페이지 작성완료</div>;
+  return <div>우분투 최신버전으로 변경</div>;
 };
 
 export default SettingTest;
