@@ -1,9 +1,9 @@
-import SettingTest from './SettingTest';
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
   return (
     <div>
-      <SettingTest />
+      <LoginPage />
     </div>
   );
 };

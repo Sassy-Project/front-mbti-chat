@@ -1,5 +1,7 @@
-const index = () => {
-  return <div />;
+import './style.scss';
+
+const LoginPage = () => {
+  return <div className='LoginPage' />;
 };
 
-export default index;
+export default LoginPage;
