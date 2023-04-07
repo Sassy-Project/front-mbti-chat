@@ -19,7 +19,7 @@
   - Reactjs code snippets
     - 리액트 고수되는 길 (rsc 치고 엔터누르면 자동으로 함수형 컴포넌트 생성해줌. 더 많은 기능 검색하면나옴)
   - vscode-styled-components
-    - styled-components 쓸 때 개발 속도 빨라짐
+    - styled-components 쓸 때 개발 속도 빨라짐!!
   <br />
   <br />
 
@@ -56,6 +56,9 @@
   <br/>
   <br/>
 # git 사용법
+## 사전 작업
+1. project로 이동해서 무슨 일을 할지 고름
+2. issue 오픈
 ## 기능 추가시
 1. 작업할 폴더로 이동
 2. git clone [Repo 주소]
