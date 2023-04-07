@@ -1,4 +1,3 @@
-import './App.css';
 import SettingTest from './SettingTest';
 
 const App = () => {
