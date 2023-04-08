@@ -1,9 +1,16 @@
 .Header {
     position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 100;
     top:0;
     display: flex;
-    background-color: red;
+    background-color: #fff;
     width: 100%;
-    height: 4rem;
+    height: 4.5rem;
+    border-bottom: 1px solid #ececec;
+    section {
+        padding: 1rem;
+    }
 }
