@@ -1,12 +1,11 @@
-import './App.css';
-import SettingTest from './SettingTest';
+import { useEffect } from 'react';
+import Routing from './Routing';
 
 const App = () => {
-  return (
-    <div>
-      <SettingTest />
-    </div>
-  );
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }, []);
+  return <Routing />;
 };
 
 export default App;
