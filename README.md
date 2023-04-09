@@ -25,8 +25,6 @@
 
 # 개발환경 맞추기
 
-- node_modules 제거
-- package-lock.json 제거 (package.json 아님)
 - 터미널 -> npm install
   <br/>
   <br/>
@@ -34,7 +32,6 @@
 
 ## 기술
  - React, Typescript
- - Redux
  - Axios, React Testing Library
  - SCSS, styled-components
  - AWS S3, cli
@@ -56,9 +53,6 @@
   <br/>
   <br/>
 # git 사용법
-## 사전 작업
-1. project로 이동해서 무슨 일을 할지 고름
-2. issue 오픈
 ## 기능 추가시
 1. 작업할 폴더로 이동
 2. git clone [Repo 주소]
