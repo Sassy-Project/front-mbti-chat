@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/styled-components/Button';
 import './style.scss';
+import ModeToggle from '../../components/styled-components/ModeToggle';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Header = () => {
       <section className='Header__nav'>
         <div className='Header__nav--logo'>Logo</div>
         <div className='Header__nav--right'>
+          <ModeToggle />
           <Button
             text='로그인'
             onClick={() => navigate('/login')}
