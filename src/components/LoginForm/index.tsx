@@ -11,7 +11,7 @@ const LoginForm = () => {
       <form>이메일</form>
 
       <Button text='이메일 로그인' onClick={onClickEvent} />
-      <Button text='테스트' onClick={onClickEvent} color='var(--color-background)' />
+      <Button text='테스트' onClick={onClickEvent} background='var(--color-background)' />
     </div>
   );
 };
