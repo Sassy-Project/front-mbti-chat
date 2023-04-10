@@ -8,11 +8,11 @@ const LoginForm = () => {
   const PW_VALID_CHECK = '8자 이하로 입력해주세요.';
 
   // login ID, PW
-  const [userId, setUserId] = useState('');
-  const [userPw, setUserPw] = useState('');
-  const [idValid, setIdValid] = useState(false);
-  const [pwValid, setPwValid] = useState(false);
-  const [pwdMsg, setPwdMsg] = useState('');
+  const [userId, setUserId] = useState<string>('');
+  const [userPw, setUserPw] = useState<string>('');
+  const [idValid, setIdValid] = useState<boolean>(false);
+  const [pwValid, setPwValid] = useState<boolean>(false);
+  const [pwdMsg, setPwdMsg] = useState<string>('');
 
   // Id focus
   const userIdInput = useCallback((inputElement) => {
