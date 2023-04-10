@@ -19,7 +19,7 @@ const Header = () => {
             color='#000'
             background='#fff'
           />
-          <Button text='회원가입' onClick={() => navigate('/signup')} width='88px' height='40px' />
+          <Button text='회원가입' onClick={() => navigate('/signup')} width='94px' height='40px' />
         </div>
       </section>
     </header>
