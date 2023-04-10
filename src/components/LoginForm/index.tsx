@@ -1,5 +1,5 @@
 import Button from '../styled-components/Button';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
@@ -10,8 +10,8 @@ const LoginForm = () => {
   // login ID, PW
   const [userId, setUserId] = useState<string>('');
   const [userPw, setUserPw] = useState<string>('');
-  const [idValid, setIdValid] = useState<boolean>(false);
-  const [pwValid, setPwValid] = useState<boolean>(false);
+  const [isValidId, setIsValidId] = useState<boolean>(false);
+  const [isValidPw, setIsValidPw] = useState<boolean>(false);
   const [pwdMsg, setPwdMsg] = useState<string>('');
 
   // Id focus
@@ -22,15 +22,15 @@ const LoginForm = () => {
   }, []);
 
   // ID input Change Event
-  const onChangeIdInput = (e) => {
-    setUserId(e.target.value);
-    setIdValid(false);
+  const onChangeIdInput = (e: SyntheticEvent<HTMLInputElement>) => {
+    setUserId(e.currentTarget.value);
+    setIsValidId(false);
   };
 
   // PW input Change Event
-  const onChangePwInput = (e) => {
-    setUserPw(e.target.value);
-    setPwValid(false);
+  const onChangePwInput = (e: SyntheticEvent<HTMLInputElement>) => {
+    setUserPw(e.currentTarget.value);
+    setIsValidPw(false);
   };
 
   const onClickEvent = () => {
@@ -39,23 +39,23 @@ const LoginForm = () => {
   };
 
   // userID focus out
-  const onBlurIdInput = (e) => {
+  const onBlurIdInput = (e: SyntheticEvent<HTMLInputElement>) => {
     if (!e.currentTarget.value) {
-      setIdValid(true);
+      setIsValidId(true);
     }
   };
 
   // userID focus out
-  const onBlurPwInput = (e) => {
+  const onBlurPwInput = (e: SyntheticEvent<HTMLInputElement>) => {
     if (!e.currentTarget.value) {
       // Pw empty
       setPwdMsg(PW_REQUIRE_CHECK);
-      setPwValid(true);
+      setIsValidPw(true);
     }
 
     if (userPw.length > 8) {
       setPwdMsg(PW_VALID_CHECK);
-      setPwValid(true);
+      setIsValidPw(true);
     }
   };
 
@@ -72,10 +72,10 @@ const LoginForm = () => {
             onChange={onChangeIdInput}
             onBlur={onBlurIdInput}
             ref={userIdInput}
-            className={idValid ? 'BasicInput__error--input' : null}
+            className={isValidId ? 'BasicInput__error--input' : null}
             placeholder='아이디를 입력해주세요.'
           />
-          {idValid ? <span className='BasicInput__error'>아이디를 입력해주세요.</span> : null}
+          {isValidId ? <span className='BasicInput__error'>아이디를 입력해주세요.</span> : null}
         </div>
         <div className='BasicInput'>
           <label htmlFor='userPw'>패스워드</label>
@@ -87,10 +87,10 @@ const LoginForm = () => {
             value={userPw}
             onChange={onChangePwInput}
             onBlur={onBlurPwInput}
-            className={pwValid ? 'BasicInput__error--input' : null}
+            className={isValidPw ? 'BasicInput__error--input' : null}
             placeholder='비밀번호 8자 이하로 입력해주세요.'
           />
-          {pwValid ? <span className='BasicInput__error'>{pwdMsg}</span> : null}
+          {isValidPw ? <span className='BasicInput__error'>{pwdMsg}</span> : null}
         </div>
         <Button text='로그인' onClick={onClickEvent} />
         <div className='LoginSupport'>
