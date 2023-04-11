@@ -1,3 +1,4 @@
+import SymbolTextLogo from '../../assets/SymbolTextLogo';
 import IntroTeam from '../../components/IntroTeam';
 import './style.scss';
 
@@ -49,7 +50,9 @@ const Footer = () => {
   return (
     <nav className='Footer'>
       <div className='Footer__items'>
-        <div className='Footer__items--logo'>logo</div>
+        <div className='Footer__items--logo'>
+          <SymbolTextLogo />
+        </div>
         <IntroTeam title='Front-end' members={frontEndMembers} url={frontEndUrl} />
         <IntroTeam title='Back-end' members={backEndMembers} url={backEndUrl} />
       </div>
