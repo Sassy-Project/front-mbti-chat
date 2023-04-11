@@ -1,0 +1,20 @@
+@import '../../sass/abstracts/mixins';
+
+// 반응형 테스트 : 색 바꾸기
+@include desktop {
+  .MainPage {
+    background-color: red;
+  }
+}
+
+@include tablet {
+  .MainPage {
+    background-color: yellow;
+  }
+}
+
+@include mobile {
+  .MainPage {
+    background-color: green;
+  }
+}
