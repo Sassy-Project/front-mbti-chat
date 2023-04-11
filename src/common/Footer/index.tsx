@@ -41,7 +41,7 @@ const backEndMembers = [
   {
     id: 3,
     name: '정지우',
-    url: '????',
+    url: 'DreamJJW',
   },
 ];
 const backEndUrl = 'https://github.com/Sassy-Project/back-mbti-chat';
