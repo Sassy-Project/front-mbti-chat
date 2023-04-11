@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 import Sun from '../../assets/Sun';
 import Moon from '../../assets/Moon';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ModeToggle = () => {
-  const [toggle, setToggle] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(true);
   const onClickToggle = () => {
-    setToggle(!toggle);
+    setIsLightMode(!isLightMode);
   };
+  useEffect(() => {
+    isLightMode
+      ? document.documentElement.setAttribute('data-theme', 'light')
+      : document.documentElement.setAttribute('data-theme', 'dark');
+  }, [isLightMode]);
   return (
     <StyledModeToggle className='ModeToggle' onClick={onClickToggle}>
-      {toggle ? <Moon /> : <Sun />}
+      {isLightMode ? <Moon /> : <Sun />}
     </StyledModeToggle>
   );
 };
