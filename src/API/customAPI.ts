@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
-const APIbaseURL = 'http://15.165.150.50:8080/';
+const APIbaseURL = 'http://13.209.136.154:8080/';
 
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
