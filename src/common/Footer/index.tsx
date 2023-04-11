@@ -1,4 +1,3 @@
-import SymbolLogo from '../../assets/SymbolLogo';
 import SymbolTextLogo from '../../assets/SymbolTextLogo';
 import IntroTeam from '../../components/IntroTeam';
 import './style.scss';
