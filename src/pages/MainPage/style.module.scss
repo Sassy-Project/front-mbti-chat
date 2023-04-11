@@ -1,0 +1,35 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+// 반응형 테스트 : 색 바꾸기
+@include desktop {
+  .MainPage {
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 100px auto;
+    .MainPage__startChat {
+    }
+  }
+}
+
+@include tablet {
+  .MainPage {
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 100px auto;
+  }
+}
+
+@include mobile {
+  .MainPage {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 100px auto;
+  }
+}
