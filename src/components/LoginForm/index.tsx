@@ -33,11 +33,6 @@ const LoginForm = () => {
     setIsValidPw(false);
   };
 
-  const onClickEvent = () => {
-    // 회원가입 작업 이후 axios 구현 예정
-    console.log('You clicked !');
-  };
-
   // userID focus out
   const onBlurIdInput = (e: SyntheticEvent<HTMLInputElement>) => {
     if (!e.currentTarget.value) {
@@ -92,7 +87,7 @@ const LoginForm = () => {
           />
           {isValidPw ? <span className='BasicInput__error'>{pwdMsg}</span> : null}
         </div>
-        <Button text='로그인' onClick={onClickEvent} />
+        <Button text='로그인' />
         <div className='LoginSupport'>
           <Link to='/login' style={{ textDecoration: 'none' }}>
             비밀번호 찾기

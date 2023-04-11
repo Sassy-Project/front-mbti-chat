@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface ButtonProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   background?: string;
   color?: string;
   width?: string;
