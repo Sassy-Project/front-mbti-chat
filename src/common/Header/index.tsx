@@ -2,11 +2,19 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/styled-components/Button';
 import './style.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
+import API from '../../API/API';
 
 const Header = () => {
   const navigate = useNavigate();
+  const onApiCall = async () => {
+    const data = await API.test();
+    console.log(data);
+  };
   return (
     <header className='Header'>
+      <button type='button' onClick={onApiCall}>
+        API TEST
+      </button>
       <section className='Header__nav'>
         <div className='Header__nav--logo'>Logo</div>
         <div className='Header__nav--right'>
