@@ -9,9 +9,11 @@ const SymbolTextLogo = () => {
 };
 
 const StyledLogo = styled.div`
+  cursor: pointer;
   img {
-    width: 108px;
-    height: 30px;
+    width: 162px;
+    height: 45px;
+    filter: grayscale(100%);
   }
 `;
 export default SymbolTextLogo;

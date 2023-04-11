@@ -9,6 +9,7 @@ const SymbolLogo = () => {
 };
 
 const StyledLogo = styled.div`
+  cursor: pointer;
   img {
     width: 54px;
     height: 54px;
