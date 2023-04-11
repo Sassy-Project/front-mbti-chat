@@ -9,6 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const onApiCall = async () => {
     const data = await API.test();
+    // eslint-disable-next-line no-console
     console.log(data);
   };
   return (

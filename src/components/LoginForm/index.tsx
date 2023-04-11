@@ -35,6 +35,7 @@ const LoginForm = () => {
 
   const onClickEvent = () => {
     // 회원가입 작업 이후 axios 구현 예정
+    // eslint-disable-next-line no-console
     console.log('You clicked !');
   };
 
