@@ -25,11 +25,6 @@ const Input = styled.input<InputProps>`
   &:focus {
     border-color: ${(props) => (props.isFocused ? '#68E4AA' : '#12BCFD')};
   }
-
-  ${(props) =>
-    props.type === 'number' &&
-    `
-  `}
 `;
 
 export default Input;
