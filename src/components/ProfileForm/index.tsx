@@ -1,4 +1,5 @@
 import Button from '../styled-components/Button';
+import Input from '../styled-components/Input';
 import './style.scss';
 
 const ProfileForm = () => {
@@ -8,7 +9,14 @@ const ProfileForm = () => {
 
   return (
     <div className='ProfileForm'>
-      <div>test</div>
+      <form>아이디</form>
+      <Input type='text' isFocused />
+      <form>닉네임</form>
+      <Input type='text' isFocused />
+      <form>이메일</form>
+      <Input type='text' isFocused />
+      <form>MBTI 선택</form>
+      <Input type='text' isFocused />
       <Button text='테스트' onClick={onClickEvent} />
     </div>
   );
