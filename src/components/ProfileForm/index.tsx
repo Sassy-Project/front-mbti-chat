@@ -1,23 +1,37 @@
-import Button from '../styled-components/Button';
 import Input from '../styled-components/Input';
+import Button from '../styled-components/Button';
+import Label from '../styled-components/Label';
 import './style.scss';
 
 const ProfileForm = () => {
+  const onClickCancel = () => {
+    window.location.href = '/';
+  };
+
   const onClickEvent = () => {
     console.log('Clicked!');
   };
 
   return (
     <div className='ProfileForm'>
-      <form>아이디</form>
-      <Input type='text' isFocused />
-      <form>닉네임</form>
-      <Input type='text' isFocused />
-      <form>이메일</form>
-      <Input type='text' isFocused />
-      <form>MBTI 선택</form>
-      <Input type='text' isFocused />
-      <Button text='테스트' onClick={onClickEvent} />
+      <div className='BasicInput'>
+        <Label htmlFor='userId'>아이디</Label>
+        <Input isFocused />
+      </div>
+      <div className='BasicInput'>
+        <Label htmlFor='userNickname'>닉네임</Label>
+        <Input isFocused />
+      </div>
+      <div className='BasicInput'>
+        <Label htmlFor='userEmail'>이메일</Label>
+        <Input isFocused />
+      </div>
+      <div className='BasicInput'>
+        <Label htmlFor='userMbtiselection'>MBTI 선택</Label>
+        <Input isFocused />
+      </div>
+      <Button text='취소' onClick={onClickCancel} background='#F4F4F4' color='#646464' />
+      <Button text='변경완료' onClick={onClickEvent} />
     </div>
   );
 };
