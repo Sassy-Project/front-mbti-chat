@@ -1,100 +1,65 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
 import MbtiCard, { Card } from '../styled-components/MbtiCard';
 import './style.scss';
 
-const CardList = [
-  {
-    mbti: 'ISTJ',
-    deg: '22.5deg',
-  },
-  {
-    mbti: 'ISFJ',
-    deg: '45deg',
-  },
-  {
-    mbti: 'INTJ',
-    deg: '67.5deg',
-  },
-  {
-    mbti: 'INFJ',
-    deg: '90deg',
-  },
-  {
-    mbti: 'ISTP',
-    deg: '112.5deg',
-  },
-  {
-    mbti: 'ISFP',
-    deg: '135deg',
-  },
-  {
-    mbti: 'INFP',
-    deg: '157.5deg',
-  },
-  {
-    mbti: 'INTP',
-    deg: '180deg',
-  },
-  {
-    mbti: 'ESTP',
-    deg: '202.5deg',
-  },
-  {
-    mbti: 'ESFP',
-    deg: '225deg',
-  },
-  {
-    mbti: 'ENFP',
-    deg: '247.5deg',
-  },
-  {
-    mbti: 'ENTP',
-    deg: '270deg',
-  },
-  {
-    mbti: 'ESTJ',
-    deg: '292.5deg',
-  },
-  {
-    mbti: 'ESFJ',
-    deg: '315deg',
-  },
-  {
-    mbti: 'ENFJ',
-    deg: '337.5deg',
-  },
-  {
-    mbti: 'ENTJ',
-    deg: '360deg',
-  },
+const mbtiList = [
+  'ESTP',
+  'ESFP',
+  'ENFP',
+  'ENTP',
+  'ESTJ',
+  'ESFJ',
+  'ENFJ',
+  'ENTJ',
+  'ISTJ',
+  'ISFJ',
+  'INFJ',
+  'INTJ',
+  'ISTP',
+  'ISFP',
+  'INFP',
+  'INTP',
 ];
 
 const Carousel = () => {
   const [selectedCard, setSelectedCard] = useState<Card>({
-    mbti: 'ENTJ', // 초기값
-    deg: '360deg',
+    mbti: 'ESTP', // 초기값
+    index: 0,
   });
+  const [stackIndex, setStackIndex] = useState<number>(0);
+
   const onClickCard = (mbti: string) => {
-    // FIXME : 마지막카드에서 첫 카드를 누를때 다음으로 이어지는게 아니라 처음으로 다시 돌아감
-    const matchingCard = CardList.find((card): any => card.mbti === mbti);
-    if (matchingCard) {
-      setSelectedCard(matchingCard);
-    }
+    const matchingCardIndex = mbtiList.indexOf(mbti);
+    const relativeIndex = calculateRelativeIndex(selectedCard.index, matchingCardIndex);
+    setSelectedCard({ mbti, index: matchingCardIndex });
+    setStackIndex((prevStackIndex) => prevStackIndex + relativeIndex);
   };
+
+  const calculateRelativeIndex = (currentIndex: number, matchingIndex: number): number => {
+    const distance = Math.abs(currentIndex - matchingIndex);
+    if (distance > 8) {
+      return matchingIndex > 8 + currentIndex ? 16 - distance : distance - 16;
+    }
+    return currentIndex - matchingIndex;
+  };
+
   return (
     <div className='Carousel'>
       <div
         className='Carousel__box'
-        style={{ transform: `rotateX(-5deg) translateY(-20px) rotateY(-${selectedCard.deg})` }}
+        style={{
+          transform: `rotateX(-5deg) translateY(-20px) rotateY(${stackIndex * 22.5}deg)`,
+        }}
       >
-        {CardList &&
-          CardList.map((card: any) => {
+        {mbtiList &&
+          mbtiList.map((mbti: string, index: number): JSX.Element => {
             return (
               <MbtiCard
-                key={card.mbti}
-                mbti={card.mbti}
-                background={`var(--color-${card.mbti})`}
-                deg={card.deg}
+                key={mbti}
+                mbti={mbti}
+                background={`var(--color-${mbti})`}
+                index={index}
                 onClickCard={onClickCard}
               />
             );
