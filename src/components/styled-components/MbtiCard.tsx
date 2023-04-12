@@ -35,6 +35,9 @@ const StyledMbtiCard = styled.div<StyledMbtiCardProps>`
   transform-origin: center;
   background: ${({ background }) => background};
   cursor: pointer;
+  span {
+    background: ${({ background }) => background};
+  }
   &:hover {
     filter: brightness(0.8);
   }
