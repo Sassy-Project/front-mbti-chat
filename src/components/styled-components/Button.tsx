@@ -55,4 +55,5 @@ const StyledButton = styled.button<Omit<ButtonProps, 'text' | 'onClick'>>`
     ${(props) => (props.background === '#fff' ? '' : 'filter: brightness(0.8)')};
   }
 `;
+
 export default Button;

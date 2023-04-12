@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import Header from './common/Header';
 import Footer from './common/Footer';
-import TestPage from './pages/TestPage';
+import ProfilePage from './pages/ProfilePage';
 
 const Routing: React.FC = (): JSX.Element => (
   <BrowserRouter>
@@ -13,7 +13,7 @@ const Routing: React.FC = (): JSX.Element => (
     <Routes>
       <Route path='/login' element={<LoginPage />} />
       <Route path='/*' element={<MainPage />} />
-      <Route path='/test' element={<TestPage />} />
+      <Route path='/users' element={<ProfilePage />} />
     </Routes>
     <Footer />
   </BrowserRouter>
