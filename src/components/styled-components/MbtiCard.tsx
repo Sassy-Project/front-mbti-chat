@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export interface Card {
   mbti: string;
-  deg: string;
+  index: number;
 }
 interface MbtiCardProps extends Card {
   background: string;
@@ -10,12 +10,12 @@ interface MbtiCardProps extends Card {
 }
 interface StyledMbtiCardProps {
   background: string;
-  deg: string;
+  index: number;
 }
 const MbtiCard = (props: MbtiCardProps) => {
-  const { mbti, background, deg, onClickCard } = props;
+  const { mbti, background, index, onClickCard } = props;
   return (
-    <StyledMbtiCard background={background} deg={deg} onClick={() => onClickCard(mbti)}>
+    <StyledMbtiCard background={background} index={index} onClick={() => onClickCard(mbti)}>
       <span>{mbti}</span>
     </StyledMbtiCard>
   );
@@ -29,12 +29,15 @@ const StyledMbtiCard = styled.div<StyledMbtiCardProps>`
   width: var(--size-card);
   height: calc(var(--size-card) * 2 / 3);
   color: var(--color-text);
-  transform: ${({ deg }) => `rotateY(${deg})`} translateZ(calc(var(--size-card) * 3));
+  transform: ${({ index }) => `rotateY(${index * 22.5}deg)`} translateZ(calc(var(--size-card) * 3));
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   transform-origin: center;
   background: ${({ background }) => background};
   cursor: pointer;
+  span {
+    background: ${({ background }) => background};
+  }
   &:hover {
     filter: brightness(0.8);
   }

@@ -11,7 +11,7 @@ interface SignUpData {
 }
 
 interface LoginData {
-  email: string;
+  loginId: string;
   password: string;
 }
 
@@ -37,7 +37,7 @@ const API = {
   },
 
   test: async (): Promise<AxiosResponse> => {
-    const response = await defaultInstance.post(`hello`);
+    const response = await defaultInstance.get(`hello`);
     return response;
   },
 };

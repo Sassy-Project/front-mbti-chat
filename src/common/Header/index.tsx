@@ -8,8 +8,7 @@ import API from '../../API/API';
 const Header = () => {
   const navigate = useNavigate();
   const onApiCall = async () => {
-    const data = await API.test();
-    console.log(data);
+    await API.test();
   };
   return (
     <header className='Header'>
