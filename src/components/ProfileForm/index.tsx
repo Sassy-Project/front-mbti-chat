@@ -8,10 +8,6 @@ const ProfileForm = () => {
     window.location.href = '/';
   };
 
-  const onClickEvent = () => {
-    console.log('Clicked!');
-  };
-
   return (
     <form className='ProfileForm'>
       <div className='BasicInput'>
@@ -31,7 +27,7 @@ const ProfileForm = () => {
         <Input isFocused />
       </div>
       <Button text='취소' onClick={onClickCancel} background='#F4F4F4' color='#646464' />
-      <Button text='변경완료' onClick={onClickEvent} />
+      <Button text='변경완료' />
     </form>
   );
 };
