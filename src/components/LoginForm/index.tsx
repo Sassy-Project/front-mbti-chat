@@ -2,6 +2,7 @@ import Button from '../styled-components/Button';
 import { useState, useCallback, SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
+import API from '../../API/API';
 
 const LoginForm = () => {
   const PW_REQUIRE_CHECK = '비밀번호를 입력해주세요.';
@@ -13,6 +14,13 @@ const LoginForm = () => {
   const [isValidId, setIsValidId] = useState<boolean>(false);
   const [isValidPw, setIsValidPw] = useState<boolean>(false);
   const [pwdMsg, setPwdMsg] = useState<string>('');
+
+  // API
+  const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    const data = { loginId: userId, password: userPw };
+    API.logIn(data);
+  };
 
   // Id focus
   const userIdInput = useCallback((inputElement) => {
@@ -31,11 +39,6 @@ const LoginForm = () => {
   const onChangePwInput = (e: SyntheticEvent<HTMLInputElement>) => {
     setUserPw(e.currentTarget.value);
     setIsValidPw(false);
-  };
-
-  const onClickEvent = () => {
-    // 회원가입 작업 이후 axios 구현 예정
-    console.log('You clicked !');
   };
 
   // userID focus out
@@ -92,7 +95,7 @@ const LoginForm = () => {
           />
           {isValidPw ? <span className='BasicInput__error'>{pwdMsg}</span> : null}
         </div>
-        <Button text='로그인' onClick={onClickEvent} />
+        <Button text='로그인' onClick={handleLoginClick} />
         <div className='LoginSupport'>
           <Link to='/login' style={{ textDecoration: 'none' }}>
             비밀번호 찾기
