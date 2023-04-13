@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface ButtonProps {
   text: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   background?: string;
   color?: string;
   width?: string;
@@ -55,4 +55,5 @@ const StyledButton = styled.button<Omit<ButtonProps, 'text' | 'onClick'>>`
     ${(props) => (props.background === '#fff' ? '' : 'filter: brightness(0.8)')};
   }
 `;
+
 export default Button;
