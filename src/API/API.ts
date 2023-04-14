@@ -15,6 +15,13 @@ interface LoginData {
   password: string;
 }
 
+interface ProfileData {
+  email: string;
+  loginId: string;
+  mbti: string;
+  nickname: string;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
@@ -35,6 +42,11 @@ const API = {
     const response = await defaultInstance.post(`users/login`, data);
     return response;
   },
+
+  // getProfileData: async (data: ProfileData): Promise<AxiosResponse> => {
+  //   const reponse = await defaultInstance.get(`users/${userId}`, data);
+  //   return reponse;
+  // },
 
   test: async (): Promise<AxiosResponse> => {
     const response = await defaultInstance.get(`hello`);
