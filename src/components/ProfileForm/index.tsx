@@ -1,12 +1,12 @@
 import { useState, useCallback, SyntheticEvent } from 'react';
-import Input from '../styled-components/Input';
+import BasicInput from '../LabelBasicInput/index';
 import Button from '../styled-components/Button';
 import Label from '../styled-components/Label';
 import './style.scss';
 import API from '../../API/API';
 
 const ProfileForm = () => {
-  const [userId, setUserId] = useState<any>(API.logIn); // 추후 default값은 API값으로 변경
+  const [userId, setUserId] = useState<any>(''); // 추후 default값은 API값으로 변경
   const [userNickname, setUserNickname] = useState<string>(''); // 추후 default값은 API값으로 변경
   const [userEmail, setUserEmail] = useState<string>(''); // 추후 default값은 API값으로 변경
   const [userMbti, setUserMbti] = useState<string>(''); // 추후 default값은 API값으로 변경
@@ -22,22 +22,15 @@ const ProfileForm = () => {
 
   return (
     <form className='ProfileForm'>
-      <div className='BasicInput'>
-        <Label>아이디</Label>
-        <Input value={userId} placeholder='아이디' />
-      </div>
-      <div className='BasicInput'>
-        <Label>닉네임</Label>
-        <Input value={userNickname} onChange={onChangeNickname} />
-      </div>
-      <div className='BasicInput'>
-        <Label>이메일</Label>
-        <Input value={userEmail} />
-      </div>
-      <div className='BasicInput'>
-        <Label>MBTI 선택</Label>
-        <Input value={userMbti} />
-      </div>
+      <BasicInput text='아이디' isFocused={false} value={userId} />
+      <BasicInput
+        text='닉네임'
+        isFocused={false}
+        value={userNickname}
+        onChange={onChangeNickname}
+      />
+      <BasicInput text='이메일' isFocused={false} value={userEmail} />
+      <BasicInput text='MBTI 선택' isFocused={false} value={userMbti} />
       <Button text='취소' onClick={onClickCancel} background='#F4F4F4' color='#646464' />
       <Button text='변경완료' color='#FFFFFF' />
     </form>

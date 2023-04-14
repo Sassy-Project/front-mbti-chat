@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 interface InputProps {
-  type?: string;
+  htmlFor?: string;
+  text?: string;
 }
 
-const Label = styled.label<InputProps>`
+const Label = ({ htmlFor, text }: InputProps) => {
+  return <StyledLabel htmlFor={htmlFor}>{text}</StyledLabel>;
+};
+
+const StyledLabel = styled.label<InputProps>`
   margin-bottom: 10px;
   font-size: 16px;
 `;
