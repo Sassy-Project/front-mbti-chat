@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
 import DesktopLogo from '../../assets/TextLogo';
 import API from '../../API/API';
+import ListIcon from '../../assets/ListIcon';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,12 +13,15 @@ const Header = () => {
   };
   return (
     <header className={styles.Header}>
-      <button type='button' onClick={onApiCall}>
+      {/* <button type='button' onClick={onApiCall}>
         API TEST
-      </button>
+      </button> */}
       <section className={styles.Header__nav}>
         <div className={styles.Header__nav__logo}>
           <DesktopLogo />
+        </div>
+        <div className={styles.Header__nav__ListIcon}>
+          <ListIcon />
         </div>
         <div className={styles.Header__nav__right}>
           <ModeToggle />

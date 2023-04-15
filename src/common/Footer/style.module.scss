@@ -8,8 +8,8 @@
   border-top: 1px solid #ececec;
   padding: 40px 0 80px;
   margin: 0 auto;
-  width: 1080px;
   &__items {
+    width: 80%;
     margin: auto;
     display: flex;
     &__logo {
@@ -21,8 +21,8 @@
 
 @include tablet {
   .Footer {
-    width: 80%;
     &__items {
+      width: 90%;
       flex-direction: column;
     }
   }

@@ -2,17 +2,15 @@
 @import '../../main.scss';
 
 // 반응형 테스트 : 색 바꾸기
-@include desktop {
-  .MainPage {
-    // background-color: red;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 80px auto;
-    &__chatStart {
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
+.MainPage {
+  // background-color: red;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 80px auto;
+  &__chatStart {
+    font-size: 1.3rem;
+    font-weight: bold;
   }
 }
 
@@ -21,10 +19,6 @@
     // background-color: yellow;
     width: 90%;
     margin: 80px auto;
-    &__chatStart {
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
   }
 }
 
