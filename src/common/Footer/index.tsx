@@ -1,6 +1,6 @@
 import SymbolTextLogo from '../../assets/SymbolTextLogo';
 import IntroTeam from '../../components/IntroTeam';
-import './style.scss';
+import styles from './style.module.scss';
 
 const frontEndMembers = [
   {
@@ -48,9 +48,9 @@ const backEndUrl = 'https://github.com/Sassy-Project/back-mbti-chat';
 
 const Footer = () => {
   return (
-    <nav className='Footer'>
-      <div className='Footer__items'>
-        <div className='Footer__items--logo'>
+    <nav className={styles.Footer}>
+      <div className={styles.Footer__items}>
+        <div className={styles.Footer__items__logo}>
           <SymbolTextLogo />
         </div>
         <IntroTeam title='Front-end' members={frontEndMembers} url={frontEndUrl} />
