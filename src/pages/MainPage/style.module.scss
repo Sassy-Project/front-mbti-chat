@@ -19,8 +19,6 @@
 @include tablet {
   .MainPage {
     // background-color: yellow;
-    display: flex;
-    flex-direction: column;
     width: 90%;
     margin: 80px auto;
     &__chatStart {
@@ -33,11 +31,8 @@
 @include mobile {
   .MainPage {
     // background-color: green;
-    display: flex;
-    flex-direction: column;
     width: 90%;
     margin: 20px auto;
-
     &__carousel,
     &__iframe,
     &__chatStart {
