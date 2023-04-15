@@ -1,6 +1,7 @@
 @import '../../sass/abstracts/mixins';
 @import '../../main.scss';
 
+
 .Footer {
   box-sizing: border-box;
   display: flex;
@@ -15,21 +16,25 @@
     &__logo {
       padding: 30px;
       min-width: 200px;
+
     }
   }
 }
 
 @include tablet {
   .Footer {
+
     &__items {
       width: 90%;
       flex-direction: column;
+
     }
   }
 }
 
 @include mobile {
   .Footer {
+
     display: none;
   }
 }
