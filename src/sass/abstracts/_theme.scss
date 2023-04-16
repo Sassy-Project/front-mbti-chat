@@ -23,6 +23,7 @@ html[data-theme="light"] {
   --color-ESFJ : #{$ESFJ-color-1};
   --color-ENFJ : #{$ENFJ-color-1};
   --color-ENTJ : #{$ENTJ-color-1};
+  
   --size-card: #{$MBTI-card-desktop};
 }
 
@@ -31,6 +32,24 @@ html[data-theme="dark"] {
   --color-background: #{$bg-color-2};
   --color-btn : #{$btn-color-2};
   --background-btn : #{$btn-background-2};
+  --color-ISTJ : #{$ISTJ-color-1};
+  --color-ISFJ : #{$ISFJ-color-1};
+  --color-INTJ : #{$INTJ-color-1};
+  --color-INFJ : #{$INFJ-color-1};
+  --color-ISTP : #{$ISTP-color-1};
+  --color-ISFP : #{$ISFP-color-1};
+  --color-INFP : #{$INFP-color-1};
+  --color-INTP : #{$INTP-color-1};
+  --color-ESTP : #{$ESTP-color-1};
+  --color-ESFP : #{$ESFP-color-1};
+  --color-ENFP : #{$ENFP-color-1};
+  --color-ENTP : #{$ENTP-color-1};
+  --color-ESTJ : #{$ESTJ-color-1};
+  --color-ESFJ : #{$ESFJ-color-1};
+  --color-ENFJ : #{$ENFJ-color-1};
+  --color-ENTJ : #{$ENTJ-color-1};
+
+  --size-card: #{$MBTI-card-desktop};
 }
 // $ISTJ-color-2: #
 // $ISFJ-color-2: #
