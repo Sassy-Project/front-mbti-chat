@@ -4,13 +4,14 @@ import styles from './startTest.module.scss';
 import Button from '../styled-components/Button';
 
 const StartTest = () => {
+  const [userName, setUserName] = useState('');
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const handleChange = ({ target: { value } }) => setName(value);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const a = document.getElementById('name').value;
-    // navigate('/test?name=' + a);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    navigate('/test', { state: { name: userName } });
+  };
+  const onChange = (e) => {
+    setUserName(e.currentTarget.value);
   };
   return (
     <div className={styles.startTest}>
@@ -19,13 +20,11 @@ const StartTest = () => {
         총 16개의 유형의 MBTI 성향을 기반으로 여행 스타일 속 나의 모습을 알아보아요
       </div>
       <img src={`${process.env.PUBLIC_URL}/images/mbtiTest/mbtiTest-start.png`} alt='이미지' />
-      <form className={styles.startTest__form} onSubmit={handleSubmit}>
+      <form className={styles.startTest__form} onSubmit={onSubmit}>
         <input
           className={styles.startTest__form__name}
-          name='name'
           type='text'
-          value={name}
-          onChange={handleChange}
+          onChange={onChange}
           placeholder='이름을 입력해주세요'
           required
         />
