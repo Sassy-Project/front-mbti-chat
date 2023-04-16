@@ -4,7 +4,7 @@
 .startTest {
   border: 0.0625rem solid #f2f2f2;
   border-radius: 8px;
-  padding: 180px 40px 50px;
+  padding: 180px 40px;
   background-color: #fff;
   width: 90%;
   height: 60vh;
@@ -31,5 +31,19 @@
     margin: 10px auto 30px;
     width: 250px;
     height: 250px;
+  }
+  &__form {
+    width: 60%;
+    margin: auto;
+    &__name {
+      height: 48px;
+      width: 70%;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: 1px solid #d9d9d9;
+      margin: 0 0 20px;
+      font-size: 14px;
+      text-align: center;
+    }
   }
 }
