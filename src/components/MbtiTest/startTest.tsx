@@ -8,7 +8,7 @@ const StartTest = () => {
   const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate('/test', { state: { name: userName } });
+    navigate('/mbtiTest', { state: { name: userName } });
   };
   const onChange = (e) => {
     setUserName(e.currentTarget.value);
