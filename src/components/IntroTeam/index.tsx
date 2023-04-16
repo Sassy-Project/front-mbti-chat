@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Github from '../../assets/Github';
-import './style.scss';
+import styles from './style.module.scss';
 
 interface member {
   id: number;
@@ -23,12 +23,12 @@ interface MemberProps {
 
 const IntroTeam = ({ title, members, url }: IntroTeamProps) => {
   return (
-    <section className='IntroTeam'>
-      <div className='IntroTeam__top'>
-        <b className='IntroTeam__title'>{title}</b>
+    <section className={styles.IntroTeam}>
+      <div className={styles.IntroTeam__top}>
+        <b className={styles.IntroTeam__title}>{title}</b>
         <Github url={url} />
       </div>
-      <div className='IntroTeam__bottom'>
+      <div className={styles.IntroTeam__bottom}>
         {members &&
           members.map((member: any) => {
             return (
@@ -47,11 +47,11 @@ const IntroTeam = ({ title, members, url }: IntroTeamProps) => {
 
 const Member = ({ position, name, url }: MemberProps) => {
   return (
-    <div className='Member'>
-      <b className='Member__position'>{position}</b>
-      <span className='Member__name'>{name}</span>
+    <div className={styles.Member}>
+      <b className={styles.Member__position}>{position}</b>
+      <span className={styles.Member__name}>{name}</span>
       <Link to={`https://github.com/${url}`} style={{ textDecoration: 'none' }} target='_blank'>
-        <span className='Member__url'>github.com/{url}</span>
+        <span className={styles.Member__url}>github.com/{url}</span>
       </Link>
     </div>
   );

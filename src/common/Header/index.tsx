@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/styled-components/Button';
-import './style.scss';
+import styles from './style.module.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
 import DesktopLogo from '../../assets/TextLogo';
 import API from '../../API/API';
+import ListIcon from '../../assets/ListIcon';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,15 +12,18 @@ const Header = () => {
     await API.test();
   };
   return (
-    <header className='Header'>
-      <button type='button' onClick={onApiCall}>
+    <header className={styles.Header}>
+      {/* <button type='button' onClick={onApiCall}>
         API TEST
-      </button>
-      <section className='Header__nav'>
-        <div className='Header__nav--logo'>
+      </button> */}
+      <section className={styles.Header__nav}>
+        <div className={styles.Header__nav__logo}>
           <DesktopLogo />
         </div>
-        <div className='Header__nav--right'>
+        <div className={styles.Header__nav__ListIcon}>
+          <ListIcon />
+        </div>
+        <div className={styles.Header__nav__right}>
           <ModeToggle />
           <Button
             text='로그인'
