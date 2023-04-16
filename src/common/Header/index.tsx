@@ -3,19 +3,13 @@ import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
 import DesktopLogo from '../../assets/TextLogo';
-import API from '../../API/API';
 import ListIcon from '../../assets/ListIcon';
 
 const Header = () => {
   const navigate = useNavigate();
-  const onApiCall = async () => {
-    await API.test();
-  };
+
   return (
     <header className={styles.Header}>
-      {/* <button type='button' onClick={onApiCall}>
-        API TEST
-      </button> */}
       <section className={styles.Header__nav}>
         <div className={styles.Header__nav__logo}>
           <DesktopLogo />
