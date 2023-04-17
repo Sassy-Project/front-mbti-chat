@@ -136,23 +136,36 @@ const MbtiTestPage = () => {
 
   return (
     <section className={styles.test}>
-      <div className={styles.progress}>Progress {QuestionNumber}/12</div>
-      <div className={styles.questionBox}>
-        {QuestionNumber <= 12 ? (
-          <h3 className={styles.question}>{questionBox[QuestionNumber].q}</h3>
-        ) : (
-          <h1>Loading</h1>
-        )}
-      </div>
+      <div className={styles.test__wrap}>
+        <div className={styles.test__wrap__progress}>{QuestionNumber}/12</div>
+        <div className={styles.test__wrap__questionNum}>Q {QuestionNumber}</div>
+        <div className={styles.test__wrap__questionBox}>
+          {QuestionNumber <= 12 ? (
+            <h3 className={styles.question}>{questionBox[QuestionNumber].q}</h3>
+          ) : (
+            <h1>Loading</h1>
+          )}
+        </div>
 
-      <div className={styles.btns}>
-        <button type='button' className={styles.btn} onClick={clickUserAnswr} value='O'>
-          {questionBox[QuestionNumber].A}
-        </button>
-        <br />
-        <button type='button' className={styles.btn} onClick={clickUserAnswr} value='X'>
-          {questionBox[QuestionNumber].B}
-        </button>
+        <div className={styles.test__wrap__btns}>
+          <button
+            type='button'
+            className={styles.test__wrap__btns__1}
+            onClick={clickUserAnswr}
+            value='O'
+          >
+            {questionBox[QuestionNumber].A}
+          </button>
+          <br />
+          <button
+            type='button'
+            className={styles.test__wrap__btns__1}
+            onClick={clickUserAnswr}
+            value='X'
+          >
+            {questionBox[QuestionNumber].B}
+          </button>
+        </div>
       </div>
     </section>
   );
