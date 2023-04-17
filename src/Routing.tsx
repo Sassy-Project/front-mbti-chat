@@ -7,6 +7,7 @@ import Footer from './common/Footer';
 import ProfilePage from './pages/ProfilePage';
 import SignUpPage from './pages/SignUpPage';
 import MbtiTestPage from './pages/MainPage/MbtiTestPage/index';
+import MbtiTestResult from './pages/MainPage/MbtiTestResult/index';
 
 const Routing: React.FC = (): JSX.Element => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path='/login' element={<LoginPage />} />
       <Route path='/*' element={<MainPage />} />
       <Route path='/mbtiTest' element={<MbtiTestPage />} />
+      <Route path='/mbtiTestResult' element={<MbtiTestResult />} />
       <Route path='/users' element={<ProfilePage />} />
       <Route path='/signup' element={<SignUpPage />} />
     </Routes>
