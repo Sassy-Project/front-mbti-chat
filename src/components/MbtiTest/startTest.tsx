@@ -20,14 +20,14 @@ const StartTest = () => {
         총 16개의 유형의 MBTI 성향을 기반으로 여행 스타일 속 나의 모습을 알아보아요
       </div>
       <img src={`${process.env.PUBLIC_URL}/images/mbtiTest/mbtiTest-start.png`} alt='이미지' />
-      <form className={styles.startTest__form} onSubmit={onSubmit}>
-        <input
-          className={styles.startTest__form__name}
-          type='text'
-          onChange={onChange}
-          placeholder='이름을 입력해주세요'
-          required
-        />
+      <input
+        className={styles.startTest__input}
+        type='text'
+        onChange={onChange}
+        placeholder='이름을 입력해주세요'
+        required
+      />
+      <form className={styles.startTest__button} onSubmit={onSubmit}>
         <Button text='테스트하기' />
       </form>
     </div>

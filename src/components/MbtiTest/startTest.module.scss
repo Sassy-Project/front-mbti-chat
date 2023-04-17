@@ -35,20 +35,37 @@
     height: 250px;
     background-color: #f2f2f2;
   }
-  &__form {
+  &__input {
+    height: 48px;
     width: 40%;
+    padding: 14px 5px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    margin: 0 auto 25px;
+    font-size: 14px;
+    text-align: center;
+  }
+  &__button {
+    width: 60%;
     margin: auto;
-    // border: 1px solid red;
     background-color: #f2f2f2;
-    &__name {
-      height: 48px;
-      width: 93.5%;
-      padding: 0 10px;
-      border-radius: 5px;
-      border: 1px solid #d9d9d9;
-      margin: 0 auto 20px;
-      font-size: 14px;
-      text-align: center;
-    }
+  }
+}
+
+@include tablet {
+  .startTest__input {
+    width: 50%;
+  }
+  .startTest__button {
+    width: 70%;
+  }
+}
+
+@include mobile {
+  .startTest__input {
+    width: 70%;
+  }
+  .startTest__button {
+    width: 90%;
   }
 }
