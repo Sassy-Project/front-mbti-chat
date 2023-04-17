@@ -104,23 +104,15 @@ const MbtiTestPage = () => {
     if (QuestionNumber < 12) {
       if (e.target.value === 'O' && questionBox[QuestionNumber].type === 'EI') {
         setEIPoint((prev) => prev + 1);
-      } else {
-        setEIPoint((prev) => prev - 1);
       }
       if (e.target.value === 'O' && questionBox[QuestionNumber].type === 'SN') {
         setSNPoint((prev) => prev + 1);
-      } else {
-        setSNPoint((prev) => prev - 1);
       }
       if (e.target.value === 'O' && questionBox[QuestionNumber].type === 'TF') {
         setTFPoint((prev) => prev + 1);
-      } else {
-        setTFPoint((prev) => prev - 1);
       }
       if (e.target.value === 'O' && questionBox[QuestionNumber].type === 'JP') {
         setJPPoint((prev) => prev + 1);
-      } else {
-        setJPPoint((prev) => prev - 1);
       }
     } else {
       navigate('/mbtiTestResult', { state: { user, EIPoint, SNPoint, TFPoint, JPPoint } });

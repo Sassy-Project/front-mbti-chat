@@ -1,6 +1,6 @@
 import styles from './style.module.scss';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const MbtiTestResult = () => {
   const location = useLocation();
@@ -10,6 +10,7 @@ const MbtiTestResult = () => {
   const SNPoint = location.state && location.state.SNPoint;
   const TFPoint = location.state && location.state.TFPoint;
   const JPPoint = location.state && location.state.JPPoint;
+
   const result = [
     EIPoint >= 2 ? 'E' : 'I',
     SNPoint >= 2 ? 'S' : 'N',
@@ -23,7 +24,7 @@ const MbtiTestResult = () => {
     }
   }, []);
 
-  const testAgainButton = (e) => {
+  const testAgainButton = () => {
     navigate('/');
   };
 
