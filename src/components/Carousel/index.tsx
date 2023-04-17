@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 import MbtiCard, { Card } from '../styled-components/MbtiCard';
-import './style.scss';
+import styles from './style.module.scss';
 
 const mbtiList = [
   'ESTP',
@@ -45,9 +45,9 @@ const Carousel = () => {
   };
 
   return (
-    <div className='Carousel'>
+    <div className={styles.Carousel}>
       <div
-        className='Carousel__box'
+        className={styles.Carousel__box}
         style={{
           transform: `rotateX(-5deg) translateY(-20px) rotateY(${stackIndex * 22.5}deg)`,
         }}
