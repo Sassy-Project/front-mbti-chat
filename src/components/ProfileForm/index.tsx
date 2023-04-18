@@ -110,7 +110,7 @@ const ProfileForm = () => {
         <label htmlFor='userMbti'>MBTI</label>
         <select value={userMbti} onChange={onChangeMbtiEvent}>
           {mbtis.map((mbti) => (
-            <option key={mbti.id} value={mbti.id}>
+            <option key={mbti.id} value={mbti.name}>
               {mbti.name}
             </option>
           ))}
@@ -120,7 +120,7 @@ const ProfileForm = () => {
         <label htmlFor='userGender'>MBTI</label>
         <select value={userGender} onChange={onChangeGenderEvent}>
           {genders.map((gender) => (
-            <option key={gender.id} value={gender.id}>
+            <option key={gender.id} value={gender.name}>
               {gender.name}
             </option>
           ))}
