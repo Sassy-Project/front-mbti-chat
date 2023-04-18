@@ -11,9 +11,9 @@ const Header = () => {
   return (
     <header className={styles.Header}>
       <section className={styles.Header__nav}>
-        <div className={styles.Header__nav__logo}>
+        <button type='button' className={styles.Header__nav__logo} onClick={() => navigate('/')}>
           <DesktopLogo />
-        </div>
+        </button>
         <div className={styles.Header__nav__ListIcon}>
           <ListIcon />
         </div>
