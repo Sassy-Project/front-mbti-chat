@@ -1,21 +1,19 @@
-import React, { SyntheticEvent } from 'react';
 import Label from '../styled-components/Label';
 import BasicInput from '../styled-components/BasicInput';
-import './style.scss';
+import styles from './style.module.scss';
 
 interface LabelBasicInputProps {
-  label?: string;
+  label: string;
   text: string;
-  name?: string;
-  id?: string;
-  type?: string;
+  name: string;
+  id: string;
+  type: string;
   value: string;
-  onChange?: (e: SyntheticEvent<HTMLInputElement>) => void;
-  onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   hasError?: boolean;
   placeholder?: string;
   errorMessage?: string;
-  isFocused?: boolean;
 }
 
 const LabelBasicInput = (props: LabelBasicInputProps) => {
@@ -31,10 +29,9 @@ const LabelBasicInput = (props: LabelBasicInputProps) => {
     hasError,
     placeholder,
     errorMessage,
-    isFocused,
   } = props;
   return (
-    <div className='FormContainer'>
+    <div className={styles.FormContainer}>
       <Label htmlFor={label} text={text} />
       <BasicInput
         name={name}
@@ -45,9 +42,8 @@ const LabelBasicInput = (props: LabelBasicInputProps) => {
         onBlur={onBlur}
         hasError={hasError}
         placeholder={placeholder}
-        isFocused={isFocused}
       />
-      {hasError ? <span className='BasicInput__error'>{errorMessage}</span> : null}
+      {hasError ? <span className={styles.error}>{errorMessage}</span> : null}
     </div>
   );
 };

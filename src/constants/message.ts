@@ -1,5 +1,6 @@
 /** Login, Register, Profile */
 export const ID_REQUIRE_CHECK = '아이디를 입력해주세요.';
+export const ID_OVERLAP_CHECK = '아이디 중복입니다.';
 export const NICKNAME_REQUIRE_CHECK = '닉네임을 입력해주세요.';
 export const PW_REQUIRE_CHECK = '비밀번호를 입력해주세요.';
 export const PW_VALID_CHECK = '최소 8자 이상 입력해주세요.'; // 변수명 컨셉 확인 필요

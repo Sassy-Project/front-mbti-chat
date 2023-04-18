@@ -1,4 +1,4 @@
-import { useState, useCallback, SyntheticEvent } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ID_REQUIRE_CHECK,
@@ -10,24 +10,34 @@ import {
   EMAIL_REQUIRE_CHECK,
   EMAIL_VALID_CHECK,
   MBTI_REQUIRE_CHECK,
+  ID_OVERLAP_CHECK,
 } from '../../constants/message';
 import { regEmail } from '../../constants/regEx';
 import LabelBasicInput from '../LabelBasicInput';
 import LabelBasicSelect from '../LabelBasicSelect';
 import Button from '../styled-components/Button';
-import './style.scss';
+import API from '../../API/API';
+import styles from './style.module.scss';
 
-// Mbti select option interface
-interface Mbti {
-  id: string;
-  name: string;
-}
-
-// Gender select option interface
-interface Gender {
-  id: string;
-  name: string;
-}
+// mbti Select option
+const mbtiList = [
+  'ESTP',
+  'ESFP',
+  'ENFP',
+  'ENTP',
+  'ESTJ',
+  'ESFJ',
+  'ENFJ',
+  'ENTJ',
+  'ISTJ',
+  'ISFJ',
+  'INFJ',
+  'INTJ',
+  'ISTP',
+  'ISFP',
+  'INFP',
+  'INTP',
+];
 
 const SignUpForm = () => {
   const [loginId, setLoginId] = useState<string>('');
@@ -35,8 +45,8 @@ const SignUpForm = () => {
   const [password, setPassword] = useState<string>('');
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-  const [mbti, setMbti] = useState<string>('1');
-  const [gender, setGender] = useState<string>('1');
+  const [mbti, setMbti] = useState<string>('ESTP');
+  const [gender, setGender] = useState<string>('남');
   // Valid
   const [isValidLoginId, setIsValidLoginId] = useState<boolean>(false);
   const [isValidNickname, setIsValidNickname] = useState<boolean>(false);
@@ -45,74 +55,54 @@ const SignUpForm = () => {
   const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
   const [isValidMbti, setIsValidMbti] = useState<boolean>(false);
   // Error Message
-  const [loginIdErrorMessage, setLoginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK); // 추후 아이디 중복 체크시 에러메시지 useState
-  const [nicknameErrorMessage, setNickNameErrorMessage] = useState<string>(NICKNAME_REQUIRE_CHECK);
+  const [loginIdErrorMessage, setLoginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK);
+  const [nicknameErrorMessage] = useState<string>(NICKNAME_REQUIRE_CHECK);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
   const [passwordConfirmErrorMessage, setPasswordConfirmErrorMessage] =
     useState<string>(PWCONFIRM_REQUIRE_CHECK);
   const [emailErrorMessage, setEmailErrorMessage] = useState<string>(EMAIL_REQUIRE_CHECK);
   const [mbtiErrorMessage, setMbtiErrorMessage] = useState<string>(MBTI_REQUIRE_CHECK);
 
-  // MBTI select option
-  const mbtis: Mbti[] = [
-    { id: '1', name: '선택하세요' },
-    { id: '2', name: 'INFJ' },
-  ];
-
-  // Gender select option
-  const genders: Gender[] = [
-    { id: '1', name: '남' },
-    { id: '2', name: '여' },
-  ];
-
-  // LoginId Focus : ref styled component ISSUE
-  // const loginIdFocus = useCallback((inputElement) => {
-  //   if (inputElement) {
-  //     inputElement.focus();
-  //   }
-  // }, []);
-
-  // LoginId Change Event
-  const onChangeLoginId = (e: SyntheticEvent<HTMLInputElement>) => {
+  // LoginId onChange Event
+  const onChangeLoginId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginId(e.currentTarget.value);
     setIsValidLoginId(false);
-    // console.log(`onChange :${isValidLoginId}`);
   };
 
-  // Nickname Change Event
-  const onChangeNickname = (e: SyntheticEvent<HTMLInputElement>) => {
+  // Nickname onChange Event
+  const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.currentTarget.value);
     setIsValidNickname(false);
   };
 
-  // Password Change Event
-  const onChangePassword = (e: SyntheticEvent<HTMLInputElement>) => {
+  // Password onChange Event
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
     setIsValidPassword(false);
   };
 
-  // PasswordConfirm Change Event
-  const onChangePasswordConfirm = (e: SyntheticEvent<HTMLInputElement>) => {
+  // PasswordConfirm onChange Event
+  const onChangePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordConfirm(e.currentTarget.value);
     setIsValidPasswordConfirm(false);
   };
 
-  // Email Change Event
-  const onChangeEmail = (e: SyntheticEvent<HTMLInputElement>) => {
+  // Email onChange Event
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
     setIsValidEmail(false);
   };
 
-  // Mbti Change Event
-  const onChangeMbti = (e: SyntheticEvent<HTMLSelectElement>) => {
+  // Mbti onChange Event select
+  const onChangeMbti = (e: React.FocusEvent<HTMLSelectElement>) => {
     setMbti(e.currentTarget.value);
     if (e.currentTarget.value !== '1') {
       setIsValidMbti(false);
     }
   };
 
-  // Gender Change Event
-  const onChangeGender = (e: SyntheticEvent<HTMLSelectElement>) => {
+  // Gender onChange Event select
+  const onChangeGender = (e: React.FocusEvent<HTMLSelectElement>) => {
     setGender(e.currentTarget.value);
   };
 
@@ -137,8 +127,7 @@ const SignUpForm = () => {
       setPasswordErrorMessage(PW_REQUIRE_CHECK);
       return;
     }
-
-    if (password.length <= 8) {
+    if (password.length < 8) {
       setIsValidPassword(true);
       setPasswordErrorMessage(PW_VALID_CHECK);
     }
@@ -191,8 +180,7 @@ const SignUpForm = () => {
     } else if (isValidPassword === false && !password) {
       setIsValidPassword(true);
     } else if (
-      isValidPasswordConfirm === false &&
-      !passwordConfirm &&
+      (isValidPasswordConfirm === false && !passwordConfirm) ||
       password !== passwordConfirm
     ) {
       setIsValidPasswordConfirm(true);
@@ -201,26 +189,35 @@ const SignUpForm = () => {
     } else if (isValidMbti === false && mbti === '1') {
       setIsValidMbti(true);
     } else {
-      // 회원가입 버튼 눌렀을때
-      // 콘솔 value
-      console.log(
-        `로그인아이디 : ${loginId}
-        닉네임:${nickname}
-        패스워드:${password}
-        패스워드확인:${passwordConfirm}
-        이메일:${email}
-        mbti:${mbti} 
-        gender:${gender}`
-      );
+      // Sign up API
+      const data = {
+        loginId,
+        nickname,
+        password,
+        email,
+        mbti: '1',
+        gender: '남',
+      };
+      const response = API.signUp(data);
+      response
+        .then((res) => {
+          if (res.data.code === 'SignUp') {
+            alert('회원가입이 완료되었습니다.'); // 추후 modal 공통 컴포넌트 작업 고려
+            window.location.replace('/login');
+          }
+        })
+        .catch((error) => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            error.message = '회원가입에 실패하였습니다.';
+            alert(error.message);
+          }
+        });
     }
   };
 
-  // form API submit
-
   return (
-    <div className='SignUpForm'>
+    <div className={styles.SignUpForm}>
       <form>
-        {/* ref styled component Issue */}
         <LabelBasicInput
           label='loginId'
           text='아이디'
@@ -233,7 +230,6 @@ const SignUpForm = () => {
           hasError={isValidLoginId}
           placeholder={ID_REQUIRE_CHECK}
           errorMessage={loginIdErrorMessage}
-          isFocused
         />
         <LabelBasicInput
           label='nickname'
@@ -247,7 +243,6 @@ const SignUpForm = () => {
           hasError={isValidNickname}
           placeholder={NICKNAME_REQUIRE_CHECK}
           errorMessage={nicknameErrorMessage}
-          isFocused
         />
         <LabelBasicInput
           label='password'
@@ -261,7 +256,6 @@ const SignUpForm = () => {
           hasError={isValidPassword}
           placeholder={PW_VALID_CHECK}
           errorMessage={passwordErrorMessage}
-          isFocused
         />
         <LabelBasicInput
           label='passwordConfirm'
@@ -275,7 +269,6 @@ const SignUpForm = () => {
           hasError={isValidPasswordConfirm}
           placeholder={PWCONFIRM_REQUIRE_CHECK}
           errorMessage={passwordConfirmErrorMessage}
-          isFocused
         />
         <LabelBasicInput
           label='email'
@@ -289,27 +282,24 @@ const SignUpForm = () => {
           hasError={isValidEmail}
           placeholder='ex)email@naver.com'
           errorMessage={emailErrorMessage}
-          isFocused
         />
         <LabelBasicSelect
+          label='mbti'
           text='MBTI'
-          options={mbtis.map((mbtiItem) => ({ value: mbtiItem.id, label: mbtiItem.name }))}
+          id='mbti'
+          options={mbtiList}
           value={mbti}
           onChange={onChangeMbti}
           onBlur={onBlurMbti}
           hasError={isValidMbti}
           errorMessage={mbtiErrorMessage}
         />
-        <LabelBasicSelect
-          text='성별'
-          options={genders.map((genderItem) => ({ value: genderItem.id, label: genderItem.name }))}
-          value={gender}
-          onChange={onChangeGender}
-        />
-        <Button text='회원가입' onClick={handleLastCheckClick} />
-        <Link to='/login' className='SignUpForm__prev'>
-          로그인
-        </Link>
+        <div className={styles.signup__btn}>
+          <Button text='회원가입' onClick={handleLastCheckClick} />
+          <Link to='/login' className={styles.signup__btn__prev}>
+            로그인
+          </Link>
+        </div>
       </form>
     </div>
   );
