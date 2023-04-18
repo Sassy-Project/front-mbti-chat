@@ -14,7 +14,7 @@ const Routing: React.FC = (): JSX.Element => (
     <Routes>
       <Route path='/login' element={<LoginPage />} />
       <Route path='/*' element={<MainPage />} />
-      <Route path='/users' element={<ProfilePage />} />
+      <Route path='/users/1' element={<ProfilePage />} />
       <Route path='/signup' element={<SignUpPage />} />
     </Routes>
     <Footer />
