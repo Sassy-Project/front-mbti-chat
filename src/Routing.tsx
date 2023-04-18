@@ -16,8 +16,8 @@ const Routing: React.FC = (): JSX.Element => (
     <Routes>
       <Route path='/login' element={<LoginPage />} />
       <Route path='/*' element={<MainPage />} />
-      <Route path='/mbtiTest' element={<MbtiTestPage />} />
-      <Route path='/mbtiTestResult' element={<MbtiTestResult />} />
+      <Route path='/mbtitest' element={<MbtiTestPage />} />
+      <Route path='/mbtitestresult' element={<MbtiTestResult />} />
       <Route path='/users' element={<ProfilePage />} />
       <Route path='/signup' element={<SignUpPage />} />
     </Routes>
