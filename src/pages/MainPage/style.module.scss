@@ -8,9 +8,10 @@
   flex-direction: column;
   width: 80%;
   margin: 80px auto;
-  &__chatStart {
+  &__title {
     font-size: 1.3rem;
     font-weight: bold;
+    margin: 8px;
   }
 }
 
@@ -29,7 +30,7 @@
     margin: 20px auto;
     &__carousel,
     &__iframe,
-    &__chatStart {
+    &__title {
       display: none;
     }
   }
