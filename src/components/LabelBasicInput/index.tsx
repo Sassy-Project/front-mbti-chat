@@ -43,7 +43,7 @@ const LabelBasicInput = (props: LabelBasicInputProps) => {
         hasError={hasError}
         placeholder={placeholder}
       />
-      {hasError ? <span className={styles.error}>{errorMessage}</span> : null}
+      {hasError && <span className={styles.error}>{errorMessage}</span>}
     </div>
   );
 };

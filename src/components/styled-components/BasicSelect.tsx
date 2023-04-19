@@ -1,18 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from 'styled-components';
 
 interface SelectProps {
   id: string;
   value: string;
   options: string[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
   hasError?: boolean;
 }
 
 const Select = ({ id, value, options, onChange, onBlur, hasError }: SelectProps) => {
   return (
-    <StyledSelect id={id} value={value} onChange={onChange} onBlur={onBlur}>
+    <StyledSelect id={id} value={value} onChange={onChange} onBlur={onBlur} hasError={hasError}>
       {options.map((option) => (
         <option key={option} value={option}>
           {option}
@@ -23,10 +22,14 @@ const Select = ({ id, value, options, onChange, onBlur, hasError }: SelectProps)
 };
 
 const StyledSelect = styled.select<Pick<SelectProps, 'hasError'>>`
+  display: flex;
+  width: 100%;
   height: 48px;
   padding: 0 10px;
+  margin: 5px 0px;
   border-radius: 5px;
-  border: 1px solid ${(props) => (props.hasError ? '#bf0b0b' : null)};
+  outline: none;
+  border: 1px solid ${(props) => (props.hasError ? '#bf0b0b' : '#D9D9D9')};
   font-size: 14px;
 `;
 

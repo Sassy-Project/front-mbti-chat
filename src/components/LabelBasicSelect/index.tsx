@@ -1,5 +1,6 @@
 import Label from '../styled-components/Label';
 import BasicSelect from '../styled-components/BasicSelect';
+import styles from './style.module.scss';
 
 interface LabelBasicSelectProps {
   label: string;
@@ -7,7 +8,7 @@ interface LabelBasicSelectProps {
   id: string;
   value: string;
   options: string[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
   hasError?: boolean;
   errorMessage?: string;
@@ -16,7 +17,7 @@ interface LabelBasicSelectProps {
 const LabelBasicSelect = (props: LabelBasicSelectProps) => {
   const { label, text, id, value, options, onChange, onBlur, hasError, errorMessage } = props;
   return (
-    <div className='FormContainer'>
+    <div className={styles.FormContainer}>
       <Label htmlFor={label} text={text} />
       <BasicSelect
         id={id}
@@ -26,7 +27,7 @@ const LabelBasicSelect = (props: LabelBasicSelectProps) => {
         onBlur={onBlur}
         hasError={hasError}
       />
-      {hasError && <span className='BasicInput__error'>{errorMessage}</span>}
+      {hasError ? <span className={styles.error}>{errorMessage}</span> : null}
     </div>
   );
 };
