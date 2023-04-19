@@ -3,43 +3,29 @@ import { useParams } from 'react-router-dom';
 import API from '../../API/API';
 import './style.scss';
 
-interface Mbti {
-  id: string;
-  name: string;
-}
-interface Gender {
-  id: string;
-  name: string;
-}
-
-const mbtis: Mbti[] = [
-  { id: '1', name: '선택하세요' },
-  { id: '2', name: 'ESTJ' },
-  { id: '3', name: 'ESTP' },
-  { id: '4', name: 'ESFJ' },
-  { id: '5', name: 'ESFP' },
-  { id: '6', name: 'ENTJ' },
-  { id: '7', name: 'ENTP' },
-  { id: '8', name: 'ENFJ' },
-  { id: '9', name: 'ENFP' },
-  { id: '10', name: 'ISTJ' },
-  { id: '11', name: 'ISTP' },
-  { id: '12', name: 'ISFJ' },
-  { id: '13', name: 'ISFP' },
-  { id: '14', name: 'INTJ' },
-  { id: '15', name: 'INTP' },
-  { id: '16', name: 'INFJ' },
-  { id: '17', name: 'INFP' },
+const mbtiList: Array<string> = [
+  'ESTP',
+  'ESFP',
+  'ENFP',
+  'ENTP',
+  'ESTJ',
+  'ESFJ',
+  'ENFJ',
+  'ENTJ',
+  'ISTJ',
+  'ISFJ',
+  'INFJ',
+  'INTJ',
+  'ISTP',
+  'ISFP',
+  'INFP',
+  'INTP',
 ];
 
-const genders: Gender[] = [
-  { id: '1', name: '선택하세요' },
-  { id: '2', name: '남' },
-  { id: '3', name: '여' },
-];
+const genderList: Array<string> = ['남', '여'];
 
 const ProfileForm = () => {
-  const { userId } = useParams();
+  const { userId } = useParams<string>();
   const [userNickname, setUserNickname] = useState<string>('');
   const [userEmail, setUserEmail] = useState<string>('');
   const [userMbti, setUserMbti] = useState<string>('');
@@ -52,7 +38,7 @@ const ProfileForm = () => {
 
   const fetchProfile = async () => {
     const data = {
-      userId: '1',
+      userId,
       nickname: userNickname,
       email: userEmail,
       mbti: userMbti,
@@ -84,7 +70,7 @@ const ProfileForm = () => {
 
   useEffect(() => {
     const getProfile = async (): Promise<void> => {
-      const { data } = await API.getProfile();
+      const { data } = await API.getId({ userId });
       if (data) {
         setUserNickname(data.nickname);
         setUserEmail(data.email);
@@ -94,10 +80,14 @@ const ProfileForm = () => {
     };
 
     getProfile();
-  }, []);
+  }, [userId]);
 
   return (
     <form className='profileForm'>
+      <div>
+        <label htmlFor='userId'>아이디</label>
+        <input value={userId} />
+      </div>
       <div>
         <label htmlFor='userNickname'>닉네임</label>
         <input value={userNickname} onChange={onChangeNicknameEvent} />
@@ -109,9 +99,9 @@ const ProfileForm = () => {
       <div>
         <label htmlFor='userMbti'>MBTI</label>
         <select value={userMbti} onChange={onChangeMbtiEvent}>
-          {mbtis.map((mbti) => (
-            <option key={mbti.id} value={mbti.name}>
-              {mbti.name}
+          {mbtiList.map((mbti) => (
+            <option key={mbti} value={mbti}>
+              {mbti}
             </option>
           ))}
         </select>
@@ -119,9 +109,9 @@ const ProfileForm = () => {
       <div>
         <label htmlFor='userGender'>MBTI</label>
         <select value={userGender} onChange={onChangeGenderEvent}>
-          {genders.map((gender) => (
-            <option key={gender.id} value={gender.name}>
-              {gender.name}
+          {genderList.map((gender) => (
+            <option key={gender} value={gender}>
+              {gender}
             </option>
           ))}
         </select>

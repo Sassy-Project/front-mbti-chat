@@ -15,12 +15,16 @@ interface LoginData {
   password: string;
 }
 
-interface ProfileData {
+interface UpdateProfileData {
   email: string;
   userId: string;
   mbti: string;
   nickname: string;
   gender: string;
+}
+
+interface GeetProfileData {
+  userId: string;
 }
 
 const API = {
@@ -44,13 +48,13 @@ const API = {
     return response;
   },
 
-  updateProfile: async (data: ProfileData): Promise<AxiosResponse> => {
+  updateProfile: async (data: UpdateProfileData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/${data.userId}`, data);
     return response;
   },
 
-  getProfile: async (): Promise<AxiosResponse> => {
-    const response = await defaultInstance.get(`users/1`);
+  getId: async (data: GeetProfileData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.get(`users/${data.userId}`);
     return response;
   },
 
