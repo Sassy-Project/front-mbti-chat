@@ -9,11 +9,8 @@ import {
   PWCONFIRM_REQUIRE_CHECK,
   PWCONFIRM_VALID_CHECK,
   EMAIL_REQUIRE_CHECK,
-  EMAIL_VALID_CHECK,
-  EMAIL_OVERLAP_CHECK,
   MBTI_REQUIRE_CHECK,
 } from '../../constants/message';
-import { regEmail } from '../../constants/regEx';
 import LabelBasicInput from '../LabelBasicInput';
 import LabelBasicSelect from '../LabelBasicSelect';
 import Button from '../styled-components/Button';
@@ -125,13 +122,13 @@ const SignUpForm = () => {
       response
         .then((res) => {
           // eslint-disable-next-line no-console
-          console.log(res);
+          console.log(`성공이메일: + ${res}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
           setIsValidEmail(true);
-          setEmailErrorMessage(EMAIL_OVERLAP_CHECK);
+          setEmailErrorMessage(error.response.data.message);
         });
     }
   }, [email]);
@@ -197,14 +194,13 @@ const SignUpForm = () => {
     if (!email) {
       setIsValidEmail(true);
       setEmailErrorMessage(EMAIL_REQUIRE_CHECK);
-      return;
     }
 
     // 이메일 유효성 검사
-    if (!regEmail.test(email)) {
-      setIsValidEmail(true);
-      setEmailErrorMessage(EMAIL_VALID_CHECK);
-    }
+    // if (!regEmail.test(email)) {
+    //   setIsValidEmail(true);
+    //   setEmailErrorMessage(EMAIL_VALID_CHECK);
+    // }
   };
 
   // MBTI onBlur Event
