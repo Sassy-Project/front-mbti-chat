@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { defaultInstance } from './customAPI';
+import { defaultInstance, AuthTokenInstance } from './customAPI';
 
 interface SignUpData {
   loginId: string;
@@ -54,7 +54,7 @@ const API = {
   },
 
   getId: async (data: GetProfileData): Promise<AxiosResponse> => {
-    const response = await defaultInstance.get(`users/${data.userId}`);
+    const response = await AuthTokenInstance.get(`users/${data.userId}`);
     return response;
   },
 
