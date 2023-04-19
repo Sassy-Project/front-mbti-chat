@@ -55,9 +55,9 @@ const ProfileForm = () => {
     fetchProfile();
   };
 
-  const onChangeNicknameEvent = (e: SyntheticEvent<HTMLInputElement>) => {
+  const onChangeNicknameEvent = useCallback((e: SyntheticEvent<HTMLInputElement>) => {
     setUserNickname(e.currentTarget.value);
-  };
+  }, []);
 
   const onChangeEmailEvent = useCallback((e: SyntheticEvent<HTMLInputElement>) => {
     setUserEmail(e.currentTarget.value);
