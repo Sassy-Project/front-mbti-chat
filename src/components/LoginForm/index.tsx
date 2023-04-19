@@ -86,11 +86,10 @@ const LoginForm = () => {
           type='text'
           value={loginId}
           onChange={onChangeLoginId}
-          onBlur={onBlurLoginId}
+          // onBlur={onBlurLoginId}
           hasError={isValidLoginId}
           placeholder={ID_REQUIRE_CHECK}
           errorMessage={loginIdErrorMessage}
-          isFocused
         />
         <LabelBasicInput
           label='password'
@@ -100,11 +99,10 @@ const LoginForm = () => {
           type='password'
           value={password}
           onChange={onChangePassword}
-          onBlur={onBlurPassword}
+          // onBlur={onBlurPassword}
           hasError={isValidPassword}
           placeholder={PW_VALID_CHECK}
           errorMessage={passwordErrorMessage}
-          isFocused
         />
         <Button text='로그인' onClick={handleLoginClick} />
         <div className='LoginSupport'>
