@@ -1,7 +1,10 @@
 import { useState, SyntheticEvent, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LabelBasicInput from '../LabelBasicInput';
+import LabelBasicSelect from '../LabelBasicSelect';
+import Button from '../styled-components/Button';
 import API from '../../API/API';
-import './style.scss';
+import styles from './style.module.scss';
 
 const mbtiList: Array<string> = [
   'ESTP',
@@ -83,45 +86,24 @@ const ProfileForm = () => {
   }, [userId]);
 
   return (
-    <form className='profileForm'>
-      <div>
-        <label htmlFor='userId'>아이디</label>
-        <input value={userId} />
-      </div>
-      <div>
-        <label htmlFor='userNickname'>닉네임</label>
-        <input value={userNickname} onChange={onChangeNicknameEvent} />
-      </div>
-      <div>
-        <label htmlFor='userEmail'>이메일</label>
-        <input value={userEmail} onChange={onChangeEmailEvent} />
-      </div>
-      <div>
-        <label htmlFor='userMbti'>MBTI</label>
-        <select value={userMbti} onChange={onChangeMbtiEvent}>
-          {mbtiList.map((mbti) => (
-            <option key={mbti} value={mbti}>
-              {mbti}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor='userGender'>MBTI</label>
-        <select value={userGender} onChange={onChangeGenderEvent}>
-          {genderList.map((gender) => (
-            <option key={gender} value={gender}>
-              {gender}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button type='submit' onClick={(e) => onSubmitForm(e)}>
-        수정하기
-      </button>
-      <button type='button' onClick={onClickCancel}>
-        메인으로
-      </button>
+    <form className={styles.ProfileForm}>
+      <LabelBasicInput text='아이디' value={userId} />
+      <LabelBasicInput text='닉네임' value={userNickname} onChange={onChangeNicknameEvent} />
+      <LabelBasicInput text='이메일' value={userEmail} onChange={onChangeEmailEvent} />
+      <LabelBasicSelect
+        text='MBTI'
+        value={userMbti}
+        onChange={onChangeMbtiEvent}
+        options={mbtiList.map((mbti) => ({ value: mbti, label: mbti }))}
+      />
+      <LabelBasicSelect
+        text='성별'
+        value={userGender}
+        onChange={onChangeGenderEvent}
+        options={genderList.map((gender) => ({ value: gender, label: gender }))}
+      />
+      <Button onClick={onSubmitForm} text='수정하기' />
+      <Button onClick={onClickCancel} text='메인으로' background='#D9D9D9' />
     </form>
   );
 };
