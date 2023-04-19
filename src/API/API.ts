@@ -23,7 +23,7 @@ interface UpdateProfileData {
   gender: string;
 }
 
-interface GeetProfileData {
+interface GetProfileData {
   userId: string;
 }
 
@@ -53,7 +53,7 @@ const API = {
     return response;
   },
 
-  getId: async (data: GeetProfileData): Promise<AxiosResponse> => {
+  getId: async (data: GetProfileData): Promise<AxiosResponse> => {
     const response = await defaultInstance.get(`users/${data.userId}`);
     return response;
   },

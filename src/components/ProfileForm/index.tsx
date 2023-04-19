@@ -39,7 +39,7 @@ const ProfileForm = () => {
     window.location.href = '/';
   }, []);
 
-  const fetchProfile = async () => {
+  const updateProfile = async () => {
     const data = {
       userId,
       nickname: userNickname,
@@ -52,7 +52,7 @@ const ProfileForm = () => {
 
   const onSubmitForm = (e: SyntheticEvent) => {
     e.preventDefault();
-    fetchProfile();
+    updateProfile();
   };
 
   const onChangeNicknameEvent = useCallback((e: SyntheticEvent<HTMLInputElement>) => {
