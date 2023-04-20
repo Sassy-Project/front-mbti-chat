@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { defaultInstance } from './customAPI';
+import { defaultInstance, AuthTokenInstance } from './customAPI';
 
 interface SignUpData {
   loginId: string;
@@ -13,6 +13,18 @@ interface SignUpData {
 interface LoginData {
   loginId: string;
   password: string;
+}
+
+interface UpdateProfileData {
+  email: string;
+  userId: string;
+  mbti: string;
+  nickname: string;
+  gender: string;
+}
+
+interface GetProfileData {
+  userId: string;
 }
 
 interface CheckIdData {
@@ -41,6 +53,16 @@ const API = {
 
   logIn: async (data: LoginData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/login`, data);
+    return response;
+  },
+
+  updateProfile: async (data: UpdateProfileData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/${data.userId}`, data);
+    return response;
+  },
+
+  getProfile: async (data: GetProfileData): Promise<AxiosResponse> => {
+    const response = await AuthTokenInstance.get(`users/${data.userId}`);
     return response;
   },
 
