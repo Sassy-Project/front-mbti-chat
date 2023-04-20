@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
 interface SelectProps {
-  options: { value: string; label: string }[];
+  id: string;
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onBlur?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: string[];
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
   hasError?: boolean;
 }
 
-const Select = ({ options, value, onChange, onBlur, hasError }: SelectProps) => {
+const Select = ({ id, value, options, onChange, onBlur, hasError }: SelectProps) => {
   return (
-    <StyledSelect value={value} onChange={onChange} onBlur={onBlur} hasError={hasError}>
+    <StyledSelect id={id} value={value} onChange={onChange} onBlur={onBlur} hasError={hasError}>
       {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+        <option key={option} value={option}>
+          {option}
         </option>
       ))}
     </StyledSelect>
@@ -21,10 +22,14 @@ const Select = ({ options, value, onChange, onBlur, hasError }: SelectProps) => 
 };
 
 const StyledSelect = styled.select<Pick<SelectProps, 'hasError'>>`
+  display: flex;
+  width: 100%;
   height: 48px;
   padding: 0 10px;
+  margin: 5px 0px;
   border-radius: 5px;
-  border: 1px solid ${(props) => (props.hasError ? '#bf0b0b !important' : null)};
+  outline: none;
+  border: 1px solid ${(props) => (props.hasError ? '#bf0b0b' : '#D9D9D9')};
   font-size: 14px;
 `;
 

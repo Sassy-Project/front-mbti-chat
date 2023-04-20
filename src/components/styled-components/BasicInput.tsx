@@ -1,4 +1,3 @@
-import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 interface InputProps {
@@ -6,12 +5,10 @@ interface InputProps {
   id: string;
   type: string;
   value: string;
-  onChange?: (e: SyntheticEvent<HTMLInputElement>) => void;
-  onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   hasError?: boolean;
   placeholder?: string;
-  errorMessage?: string;
-  isFocused?: boolean;
 }
 
 const BasicInput = ({
@@ -23,8 +20,6 @@ const BasicInput = ({
   onBlur,
   hasError,
   placeholder,
-  errorMessage,
-  isFocused,
 }: InputProps) => {
   return (
     <div className='BasicInput'>
@@ -37,24 +32,21 @@ const BasicInput = ({
         onBlur={onBlur}
         hasError={hasError}
         placeholder={placeholder}
-        errorMessage={errorMessage}
-        isFocused={isFocused}
       />
     </div>
   );
 };
 
-const StyledInput = styled.input<Pick<InputProps, 'hasError' | 'errorMessage' | 'isFocused'>>`
+const StyledInput = styled.input<Pick<InputProps, 'hasError'>>`
+  display: flex;
+  width: calc(100% - 22px);
   height: 48px;
   padding: 0 10px;
+  margin: 5px 0px;
   border-radius: 5px;
-  border: 1px solid ${(props) => (props.hasError ? '#bf0b0b !important' : null)};
+  outline: none;
+  border: 1px solid ${(props) => (props.hasError ? '#bf0b0b' : '#D9D9D9')};
   font-size: 14px;
-  /* isFocused를 통해 불린값을 주게되면 focus색상을 선택할 수 있습니다. */
-  &:focus {
-    outline: none;
-    border-color: ${(props) => (props.isFocused ? '#68E4AA' : '#12BCFD')};
-  }
 `;
 
 export default BasicInput;
