@@ -1,7 +1,12 @@
+import { TokenProvider } from './Auth/useAuth';
 import Routing from './Routing';
 
 const App = () => {
-  return <Routing />;
+  return (
+    <TokenProvider>
+      <Routing />
+    </TokenProvider>
+  );
 };
 
 export default App;

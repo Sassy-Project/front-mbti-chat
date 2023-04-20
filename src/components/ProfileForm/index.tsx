@@ -1,5 +1,5 @@
 import { useState, SyntheticEvent, useCallback, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import LabelBasicInput from '../LabelBasicInput';
 import LabelBasicSelect from '../LabelBasicSelect';
 import Button from '../styled-components/Button';
@@ -35,6 +35,7 @@ const mbtiList: Array<string> = [
 const genderList: Array<string> = ['남', '여'];
 
 const ProfileForm = () => {
+  const navigate = useNavigate();
   const { userId } = useParams<string>();
   const [userData, setUserData] = useState<ProfileFormData>({
     loginId: '',
@@ -59,11 +60,15 @@ const ProfileForm = () => {
       userId,
     };
     await API.updateProfile(data);
+    localStorage.setItem('nickname', userData.nickname);
   };
 
   const onSubmitForm = (e: SyntheticEvent) => {
     e.preventDefault();
     updateProfile();
+    // eslint-disable-next-line no-alert
+    alert('수정완료');
+    navigate(-1);
   };
 
   const onChangeUserData = (e: SyntheticEvent<HTMLInputElement | HTMLSelectElement>) => {

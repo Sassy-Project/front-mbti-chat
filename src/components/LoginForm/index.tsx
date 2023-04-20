@@ -7,7 +7,7 @@ import './style.scss';
 import API from '../../API/API';
 import { AxiosResponse } from 'axios';
 
-interface UserData {
+export interface UserData {
   accessToken: string;
   accessTokenExpiresIn: number;
   id: number;
@@ -15,9 +15,15 @@ interface UserData {
   refreshToken: string;
 }
 
-const LoginForm = () => {
+interface LoginFormProps {
+  login: (response: AxiosResponse<UserData>) => void;
+}
+
+const LoginForm = ({ login }: LoginFormProps) => {
   // hooks
   const navigate = useNavigate();
+  // global state
+
   // login ID, PW
   const [loginId, setLoginId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -40,37 +46,6 @@ const LoginForm = () => {
     setIsValidPassword(false);
   };
 
-  // // LoginId onBlur Event
-  // const onBlurLoginId = () => {
-  //   if (!loginId) {
-  //     setIsValidLoginId(true);
-  //   }
-  // };
-
-  // // Password onBlure Event
-  // const onBlurPassword = () => {
-  //   if (!password) {
-  //     setIsValidPassword(true);
-  //     setPasswordErrorMessage(PW_REQUIRE_CHECK);
-  //     return;
-  //   }
-
-  //   if (password.length < 8) {
-  //     setIsValidPassword(true);
-  //     setPasswordErrorMessage(PW_VALID_CHECK);
-  //   }
-  // };
-
-  // Set localstorage
-  const setLocalstorage = (response: AxiosResponse<UserData>) => {
-    const { accessToken, accessTokenExpiresIn, id, nickname, refreshToken } = response.data;
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('accessTokenExpiresIn', String(accessTokenExpiresIn));
-    localStorage.setItem('id', String(id));
-    localStorage.setItem('nickname', nickname);
-    localStorage.setItem('refreshToken', refreshToken);
-  };
-
   // API
   const handleLoginClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -81,7 +56,7 @@ const LoginForm = () => {
     } else {
       const data = { loginId, password };
       const response = await API.logIn(data);
-      setLocalstorage(response);
+      login(response);
       navigate('/');
     }
   };
