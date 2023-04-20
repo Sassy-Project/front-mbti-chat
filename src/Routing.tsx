@@ -12,7 +12,6 @@ import { TokenContext } from './Auth/useAuth';
 
 const Routing: React.FC = (): JSX.Element => {
   const { token } = useContext(TokenContext);
-  console.log(token);
   return (
     <BrowserRouter>
       <Header />
