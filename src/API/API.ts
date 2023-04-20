@@ -53,7 +53,7 @@ const API = {
     return response;
   },
 
-  getId: async (data: GetProfileData): Promise<AxiosResponse> => {
+  getProfile: async (data: GetProfileData): Promise<AxiosResponse> => {
     const response = await AuthTokenInstance.get(`users/${data.userId}`);
     return response;
   },

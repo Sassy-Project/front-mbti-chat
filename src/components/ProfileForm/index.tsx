@@ -73,12 +73,12 @@ const ProfileForm = () => {
 
   useEffect(() => {
     const getProfile = async (): Promise<void> => {
-      const { data } = await API.getId({ userId });
-      if (data) {
-        setUserNickname(data.nickname);
-        setUserEmail(data.email);
-        setUserMbti(data.mbti);
-        setUserGender(data.gender);
+      const { response }: any = await API.getProfile({ userId });
+      if (response) {
+        setUserNickname(response.nickname);
+        setUserEmail(response.email);
+        setUserMbti(response.mbti);
+        setUserGender(response.gender);
       }
     };
 
