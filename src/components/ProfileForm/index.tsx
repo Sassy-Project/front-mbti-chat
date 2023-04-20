@@ -59,15 +59,15 @@ const ProfileForm = () => {
     setUserNickname(e.currentTarget.value);
   }, []);
 
-  const onChangeEmailEvent = useCallback((e: SyntheticEvent<HTMLInputElement>) => {
+  const onChangeEmail = useCallback((e: SyntheticEvent<HTMLInputElement>) => {
     setUserEmail(e.currentTarget.value);
   }, []);
 
-  const onChangeMbtiEvent = useCallback((e: SyntheticEvent<HTMLSelectElement>) => {
+  const onChangeMbti = useCallback((e: SyntheticEvent<HTMLSelectElement>) => {
     setUserMbti(e.currentTarget.value);
   }, []);
 
-  const onChangeGenderEvent = useCallback((e: SyntheticEvent<HTMLSelectElement>) => {
+  const onChangeGender = useCallback((e: SyntheticEvent<HTMLSelectElement>) => {
     setUserGender(e.currentTarget.value);
   }, []);
 
@@ -87,20 +87,47 @@ const ProfileForm = () => {
 
   return (
     <form className={styles.ProfileForm}>
-      <LabelBasicInput text='아이디' value={userId} />
-      <LabelBasicInput text='닉네임' value={userNickname} onChange={onChangeNicknameEvent} />
-      <LabelBasicInput text='이메일' value={userEmail} onChange={onChangeEmailEvent} />
-      <LabelBasicSelect
-        text='MBTI'
-        value={userMbti}
-        onChange={onChangeMbtiEvent}
-        options={mbtiList.map((mbti) => ({ value: mbti, label: mbti }))}
+      <LabelBasicInput
+        label='userId'
+        text='아이디'
+        name='nickname'
+        id='nickname'
+        type='text'
+        value={userId}
+      />
+      <LabelBasicInput
+        label='nickname'
+        text='닉네임'
+        name='nickname'
+        id='nickname'
+        type='text'
+        value={userNickname}
+        onChange={onChangeNicknameEvent}
+      />
+      <LabelBasicInput
+        label='email'
+        text='이메일'
+        name='email'
+        id='email'
+        type='email'
+        value={userEmail}
+        onChange={onChangeEmail}
       />
       <LabelBasicSelect
+        label='mbti'
+        text='MBTI'
+        id='mbti'
+        options={mbtiList}
+        value={userMbti}
+        onChange={onChangeMbti}
+      />
+      <LabelBasicSelect
+        label='gender'
         text='성별'
+        id='gender'
+        options={genderList}
         value={userGender}
-        onChange={onChangeGenderEvent}
-        options={genderList.map((gender) => ({ value: gender, label: gender }))}
+        onChange={onChangeGender}
       />
       <Button onClick={onSubmitForm} text='수정하기' />
       <Button onClick={onClickCancel} text='메인으로' background='#D9D9D9' />

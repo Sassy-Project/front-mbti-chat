@@ -27,18 +27,26 @@ interface GetProfileData {
   userId: string;
 }
 
+interface CheckIdData {
+  loginId: string;
+}
+
+interface CheckEmailData {
+  email: string;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
     return response;
   },
 
-  checkId: async (loginId: string): Promise<AxiosResponse> => {
+  checkId: async (loginId: CheckIdData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup/id`, loginId);
     return response;
   },
 
-  checkEmail: async (email: string): Promise<AxiosResponse> => {
+  checkEmail: async (email: CheckEmailData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup/email`, email);
     return response;
   },
