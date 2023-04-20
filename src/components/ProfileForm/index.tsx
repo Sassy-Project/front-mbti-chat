@@ -84,10 +84,10 @@ const ProfileForm = () => {
   return (
     <form className={styles.ProfileForm}>
       <LabelBasicInput
-        label='userId'
+        label='loginId'
         text='아이디'
-        name='userId'
-        id='userId'
+        name='loginId'
+        id='loginId'
         type='text'
         value={userData.loginId}
         onChange={onChangeUserData}
