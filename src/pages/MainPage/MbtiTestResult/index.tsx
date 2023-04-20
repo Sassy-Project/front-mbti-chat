@@ -22,7 +22,7 @@ const MbtiTestResult = () => {
     if (location.state === null) {
       navigate('/');
     }
-  }, []);
+  }, [location.state, navigate]);
 
   const testAgainButton = () => {
     navigate('/');
