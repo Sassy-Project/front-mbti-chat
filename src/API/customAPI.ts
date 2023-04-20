@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
-const APIbaseURL = 'http://13.209.136.154:8080/';
+const APIbaseURL = 'http://api.projectsassy.net:8080/';
 
 const axiosApi = ({ options }: any) => {
   const instance = axios.create({
@@ -37,19 +37,14 @@ const axiosApi = ({ options }: any) => {
 };
 
 const axiosAuthTokenApi = ({ options }: any) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
   const instance = axios.create({
     baseURL: APIbaseURL,
     ...options,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
-
-  instance.interceptors.response.use((config: any) => {
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  });
-
   instance.interceptors.response.use(
     (response) => {
       console.log('interceptor > response', response);

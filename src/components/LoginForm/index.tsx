@@ -1,12 +1,23 @@
 import Button from '../styled-components/Button';
 import { useState, SyntheticEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ID_REQUIRE_CHECK, PW_REQUIRE_CHECK, PW_VALID_CHECK } from '../../constants/message';
 import LabelBasicInput from '../LabelBasicInput';
 import './style.scss';
 import API from '../../API/API';
+import { AxiosResponse } from 'axios';
+
+interface UserData {
+  accessToken: string;
+  accessTokenExpiresIn: number;
+  id: number;
+  nickname: string;
+  refreshToken: string;
+}
 
 const LoginForm = () => {
+  // hooks
+  const navigate = useNavigate();
   // login ID, PW
   const [loginId, setLoginId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -14,8 +25,8 @@ const LoginForm = () => {
   const [isValidLoginId, setIsValidLoginId] = useState<boolean>(false);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
   // Error Message
-  const [loginIdErrorMessage, setLoginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK); // 추후 중복확인 체크 작업 진행
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
+  const [loginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK); // 추후 중복확인 체크 작업 진행
+  const [passwordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
 
   // LoginId Change Event
   const onChangeLoginId = (e: SyntheticEvent<HTMLInputElement>) => {
@@ -29,29 +40,39 @@ const LoginForm = () => {
     setIsValidPassword(false);
   };
 
-  // LoginId onBlur Event
-  const onBlurLoginId = () => {
-    if (!loginId) {
-      setIsValidLoginId(true);
-    }
-  };
+  // // LoginId onBlur Event
+  // const onBlurLoginId = () => {
+  //   if (!loginId) {
+  //     setIsValidLoginId(true);
+  //   }
+  // };
 
-  // Password onBlure Event
-  const onBlurPassword = () => {
-    if (!password) {
-      setIsValidPassword(true);
-      setPasswordErrorMessage(PW_REQUIRE_CHECK);
-      return;
-    }
+  // // Password onBlure Event
+  // const onBlurPassword = () => {
+  //   if (!password) {
+  //     setIsValidPassword(true);
+  //     setPasswordErrorMessage(PW_REQUIRE_CHECK);
+  //     return;
+  //   }
 
-    if (password.length < 8) {
-      setIsValidPassword(true);
-      setPasswordErrorMessage(PW_VALID_CHECK);
-    }
+  //   if (password.length < 8) {
+  //     setIsValidPassword(true);
+  //     setPasswordErrorMessage(PW_VALID_CHECK);
+  //   }
+  // };
+
+  // Set localstorage
+  const setLocalstorage = (response: AxiosResponse<UserData>) => {
+    const { accessToken, accessTokenExpiresIn, id, nickname, refreshToken } = response.data;
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('accessTokenExpiresIn', String(accessTokenExpiresIn));
+    localStorage.setItem('id', String(id));
+    localStorage.setItem('nickname', nickname);
+    localStorage.setItem('refreshToken', refreshToken);
   };
 
   // API
-  const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleLoginClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (isValidLoginId === false && !loginId) {
       setIsValidLoginId(true);
@@ -59,19 +80,9 @@ const LoginForm = () => {
       setIsValidPassword(true);
     } else {
       const data = { loginId, password };
-      const response = API.logIn(data);
-      response
-        .then((res) => {
-          if (res.status === 200) {
-            alert(`${res.data.nickname}님 환영합니다.`);
-          }
-        })
-        .catch((error) => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            error.message = '아이디/패스워드를 확인해주세요';
-            alert(error.message);
-          }
-        });
+      const response = await API.logIn(data);
+      setLocalstorage(response);
+      navigate('/');
     }
   };
 

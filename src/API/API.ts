@@ -15,9 +15,10 @@ interface LoginData {
   password: string;
 }
 
-interface UpdateProfileData {
+export interface UpdateProfileData {
+  userId?: string;
   email: string;
-  userId: string;
+  loginId: string;
   mbti: string;
   nickname: string;
   gender: string;
@@ -57,7 +58,8 @@ const API = {
   },
 
   updateProfile: async (data: UpdateProfileData): Promise<AxiosResponse> => {
-    const response = await defaultInstance.post(`users/${data.userId}`, data);
+    const { userId, ...restData } = data;
+    const response = await AuthTokenInstance.patch(`users/${userId}`, restData);
     return response;
   },
 
