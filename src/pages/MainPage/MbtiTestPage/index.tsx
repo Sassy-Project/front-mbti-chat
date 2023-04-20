@@ -124,7 +124,7 @@ const MbtiTestPage = () => {
     } else {
       navigate('/');
     }
-  }, []);
+  }, [location.state, navigate]);
 
   return (
     <section className={styles.test}>
