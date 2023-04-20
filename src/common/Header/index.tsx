@@ -9,7 +9,7 @@ import { TokenContext } from '../../Auth/useAuth';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { token } = useContext(TokenContext);
+  const { token, logout } = useContext(TokenContext);
   const [userData, setUserData] = useState({
     id: '',
     nickname: '',
@@ -34,9 +34,15 @@ const Header = () => {
         <div className={styles.Header__nav__right}>
           <ModeToggle />
           {token ? (
-            <button type='button' onClick={() => navigate(`/users/${userData.id}`)}>
-              정보수정하러가기
-            </button>
+            <>
+              <button type='button' onClick={() => navigate(`/users/${userData.id}`)}>
+                정보수정하러가기
+              </button>
+              <span>-----</span>
+              <button type='button' onClick={logout}>
+                로그아웃
+              </button>
+            </>
           ) : (
             <>
               <Button
