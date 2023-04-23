@@ -2,20 +2,29 @@ import styled from 'styled-components';
 
 export interface Card {
   mbti: string;
-  index: number;
+  id: number;
+  isSelected?: boolean;
 }
 interface MbtiCardProps extends Card {
   background: string;
   onClickCard: (mbti: string) => void;
+  isSelected: boolean;
 }
+
 interface StyledMbtiCardProps {
   background: string;
-  index: number;
+  id: any;
+  isSelected: boolean;
 }
 const MbtiCard = (props: MbtiCardProps) => {
-  const { mbti, background, index, onClickCard } = props;
+  const { mbti, background, id, onClickCard, isSelected } = props;
   return (
-    <StyledMbtiCard background={background} index={index} onClick={() => onClickCard(mbti)}>
+    <StyledMbtiCard
+      background={background}
+      id={id}
+      onClick={() => onClickCard(mbti)}
+      isSelected={isSelected}
+    >
       <span>{mbti}</span>
     </StyledMbtiCard>
   );
@@ -29,7 +38,8 @@ const StyledMbtiCard = styled.div<StyledMbtiCardProps>`
   width: var(--size-card);
   height: calc(var(--size-card) * 2 / 3);
   color: var(--color-text);
-  transform: ${({ index }) => `rotateY(${index * 22.5}deg)`} translateZ(calc(var(--size-card) * 3));
+  transform: ${({ id }) => `rotateY(${id * 22.5}deg)`} translateZ(calc(var(--size-card) * 3))
+    ${({ isSelected }) => isSelected && 'scale(1.2)'};
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   transform-origin: center;

@@ -25,6 +25,8 @@ html[data-theme="light"] {
   --color-ENTJ : #{$ENTJ-color-1};
   
   --size-card: #{$MBTI-card-desktop};
+  --chat-background-you: #{$chat-background-1};
+  --chat-background-me: #{$chat-background-2};
 }
 
 html[data-theme="dark"] {
@@ -50,6 +52,8 @@ html[data-theme="dark"] {
   --color-ENTJ : #{$ENTJ-color-1};
 
   --size-card: #{$MBTI-card-desktop};
+  --chat-background-you: #{$chat-background-1};
+  --chat-background-me: #{$chat-background-2};
 }
 // $ISTJ-color-2: #
 // $ISFJ-color-2: #
