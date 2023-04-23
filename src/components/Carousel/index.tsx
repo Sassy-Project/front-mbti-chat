@@ -51,6 +51,7 @@ const Carousel = () => {
 
   const onClickCard = (mbti: string) => {
     if (mbtiList.some((card) => card.isSelected && card.mbti === mbti)) {
+      // eslint-disable-next-line no-alert
       userId ? navigate(`/chat/${userId}`) : alert('로그인 해주세요');
     }
     // 빙글빙글 담당
