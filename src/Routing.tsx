@@ -9,6 +9,8 @@ import SignUpPage from './pages/SignUpPage';
 import MbtiTestPage from './pages/MainPage/MbtiTestPage/index';
 import MbtiTestResult from './pages/MainPage/MbtiTestResult/index';
 import ChatPage from './pages/ChatPage';
+import FindIdPage from './pages/FindIdPage';
+import FindIdResult from './pages/FindIdPage/FindIdResult';
 // MbtiProvider를 routes 전체를 감싸지 않는 방법을 찾아야함
 
 const Routing: React.FC = (): JSX.Element => (
@@ -22,6 +24,8 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path='/mbtitestresult' element={<MbtiTestResult />} />
       <Route path='/users/:userId' element={<ProfilePage />} />
       <Route path='/signup' element={<SignUpPage />} />
+      <Route path='/findId' element={<FindIdPage />} />
+      <Route path='/findIdResult' element={<FindIdResult />} />
     </Routes>
     <Footer />
   </BrowserRouter>

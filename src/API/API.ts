@@ -36,6 +36,15 @@ interface CheckEmailData {
   email: string;
 }
 
+interface CheckEmailCodeData {
+  email: string;
+}
+
+interface GetLoginIdData {
+  email: string;
+  code: string;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
@@ -65,6 +74,16 @@ const API = {
 
   getProfile: async (data: GetProfileData): Promise<AxiosResponse> => {
     const response = await AuthTokenInstance.get(`users/${data.userId}`);
+    return response;
+  },
+
+  checkEmailCode: async (email: CheckEmailCodeData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/email`, email);
+    return response;
+  },
+
+  getLoginId: async (data: GetLoginIdData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/find/id`, data);
     return response;
   },
 
