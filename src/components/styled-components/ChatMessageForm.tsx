@@ -12,6 +12,8 @@ const ChatMessageForm = ({ publishAfterGetRoomId, handleChange, chat }: any) => 
 
 const StyledForm = styled.form`
   display: flex;
+  position: sticky;
+  bottom: 0;
 
   textarea {
     flex-grow: 1;
