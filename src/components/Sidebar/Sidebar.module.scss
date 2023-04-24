@@ -1,17 +1,8 @@
 @import '../../sass/abstracts/mixins';
 @import '../../main.scss';
 
-// .Sidebar {
-//   &__content {
-//     border: 1px solid blue;
-//     padding: 20px;
-//     margin-top: 50px;
-//     text-align: left;
-//   }
-// }
-
-.SidebarLogin {
-  border-left: 1px solid black;
+.Sidebar {
+  border-left: 1px solid rgb(228, 228, 228);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -20,38 +11,41 @@
   height: 100%;
   width: 250px;
   &__CloseIcon {
-    border: 1px solid yellow;
+    // border: 1px solid yellow;
     svg {
-      border: 1px solid black;
+      // border: 1px solid black;
       position: relative;
-      top: 20px;
-      left: 75px;
-      width: 23px;
-      height: 23px;
+      top: 10px;
+      left: 100px;
+      width: 21px;
+      height: 21px;
       cursor: pointer;
     }
   }
-}
-
-.SidebarLogout {
-  border-left: 1px solid black;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 99;
-  height: 100%;
-  width: 250px;
-  &__CloseIcon {
-    border: 1px solid yellow;
-    svg {
-      border: 1px solid black;
-      position: relative;
-      top: 20px;
-      left: 75px;
-      width: 23px;
-      height: 23px;
-      cursor: pointer;
+  &__content {
+    // border: 1px solid black;
+    height: 30%;
+    width: 90%;
+    position: relative;
+    top: 50px;
+    left: 12px;
+    text-align: left;
+    &__letter1 {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    &__letter2 {
+      margin-top: 14px;
+      font-size: 0.8rem;
+    }
+    &__line {
+      margin-top: 10px;
+      font-size: 0.5rem;
+      color: rgb(214, 214, 214);
+    }
+    &__letter3 {
+      margin-top: 20px;
+      font-size: 0.8rem;
     }
   }
 }

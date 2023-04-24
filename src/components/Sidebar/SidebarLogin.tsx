@@ -5,8 +5,8 @@ const SidebarLogin = () => {
   // 사용자 추가 수정 중
   // 마이페이지 링크연결 수정 중
   return (
-    <div className={styles.SidebarLogin}>
-      <div className={styles.SidebarLogin__CloseIcon}>
+    <div className={styles.Sidebar}>
+      <div className={styles.Sidebar__CloseIcon}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='16'
@@ -21,10 +21,13 @@ const SidebarLogin = () => {
           d='M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'
         />
       </div>
-      <ul className={styles.SidebarLogin__content}>
-        <li className={styles.SidebarLogin__content__username}>사용자 고객님</li>
-        <li className={styles.SidebarLogin__content__hi}>안녕하세요</li>
-        <li className={styles.SidebarLogin__content__mypage}>
+      <ul className={styles.Sidebar__content}>
+        <li className={styles.Sidebar__content__letter1}>사용자 고객님</li>
+        <li className={styles.Sidebar__content__letter2}>안녕하세요</li>
+        <li className={styles.Sidebar__content__line}>
+          ____________________________________________________
+        </li>
+        <li className={styles.Sidebar__content__letter3}>
           <Link to='/'>마이페이지</Link>
         </li>
       </ul>

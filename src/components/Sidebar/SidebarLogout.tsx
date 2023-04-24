@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const SidebarLogout = () => {
   return (
-    <div className={styles.SidebarLogout}>
-      <div className={styles.SidebarLogout__CloseIcon}>
+    <div className={styles.Sidebar}>
+      <div className={styles.Sidebar__CloseIcon}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='16'
@@ -19,12 +19,15 @@ const SidebarLogout = () => {
           d='M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'
         />
       </div>
-      <ul className={styles.SidebarLogout__content}>
-        <li className={styles.SidebarLogout__content__loginPlz}>로그인 해주세요</li>
-        <li className={styles.SidebarLogout__content__login}>
-          <Link to='/login'>로그인</Link>
+      <ul className={styles.Sidebar__content}>
+        <li className={styles.Sidebar__content__letter1}>로그인 해주세요</li>
+        <li className={styles.Sidebar__content__letter2}>
+          <Link to='/login'>로그인 {'>'}</Link>
         </li>
-        <li className={styles.SidebarLogout__content__signup}>
+        <li className={styles.Sidebar__content__line}>
+          ____________________________________________________
+        </li>
+        <li className={styles.Sidebar__content__letter3}>
           <Link to='/signup'>회원가입</Link>
         </li>
       </ul>
