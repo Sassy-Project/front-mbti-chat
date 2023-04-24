@@ -1,12 +1,26 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
 import DesktopLogo from '../../assets/TextLogo';
 import ListIcon from '../../assets/ListIcon';
+import SidebarLogin from '../../components/Sidebar/SidebarLogin';
+import SidebarLogout from '../../components/Sidebar/SidebarLogout';
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isLoginUser, setIsLoginUser] = useState(false);
+  const localLength = localStorage.length;
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    if (localLength) {
+      setIsLoginUser(true);
+    } else {
+      setIsLoginUser(false);
+    }
+  };
 
   return (
     <header className={styles.Header}>
@@ -14,9 +28,11 @@ const Header = () => {
         <button type='button' className={styles.Header__nav__logo} onClick={() => navigate('/')}>
           <DesktopLogo />
         </button>
-        <div className={styles.Header__nav__ListIcon}>
-          <ListIcon />
-        </div>
+        <button type='button' className={styles.Header__nav__ListIcon} onClick={() => toggleMenu()}>
+          {!isOpen ? <ListIcon /> : ''}
+          {isOpen && isLoginUser ? <SidebarLogin /> : ''}
+          {isOpen && !isLoginUser ? <SidebarLogout /> : ''}
+        </button>
         <div className={styles.Header__nav__right}>
           <ModeToggle />
           <Button

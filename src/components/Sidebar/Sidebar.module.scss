@@ -1,0 +1,57 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+// .Sidebar {
+//   &__content {
+//     border: 1px solid blue;
+//     padding: 20px;
+//     margin-top: 50px;
+//     text-align: left;
+//   }
+// }
+
+.SidebarLogin {
+  border-left: 1px solid black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  height: 100%;
+  width: 250px;
+  &__CloseIcon {
+    border: 1px solid yellow;
+    svg {
+      border: 1px solid black;
+      position: relative;
+      top: 20px;
+      left: 75px;
+      width: 23px;
+      height: 23px;
+      cursor: pointer;
+    }
+  }
+}
+
+.SidebarLogout {
+  border-left: 1px solid black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  height: 100%;
+  width: 250px;
+  &__CloseIcon {
+    border: 1px solid yellow;
+    svg {
+      border: 1px solid black;
+      position: relative;
+      top: 20px;
+      left: 75px;
+      width: 23px;
+      height: 23px;
+      cursor: pointer;
+    }
+  }
+}
