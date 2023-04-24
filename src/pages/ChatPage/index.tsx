@@ -21,6 +21,7 @@ interface WatingRoomBody {
   roomId: number;
   sendUserId?: string;
   content?: string;
+  matchedUserNickname?: string;
 }
 
 interface MessageBody {
@@ -43,7 +44,10 @@ const ChatPage: React.FC = () => {
   const [chat, setChat] = useState<string>('');
   const [roomId, setRoomId] = useState<number>();
   const userNickname = localStorage.getItem('nickname');
+  const [matchedUserNicknameState, setMatchedUserNicknameState] = useState<string>();
   const [isMatch, setIsMatch] = useState<boolean>(false);
+  const [isLeave, setIsLeave] = useState<boolean>(false);
+
   // 고유한 ID를 발급하는 함수
   const generateId = (() => {
     let id = 0;
@@ -56,7 +60,6 @@ const ChatPage: React.FC = () => {
   const disconnect = () => {
     client.current.deactivate();
     console.log('채팅이 종료되었습니다.');
-    setIsMatch(false);
   };
 
   const onMessageReceived = (message: StompJs.Message) => {
@@ -70,12 +73,14 @@ const ChatPage: React.FC = () => {
       time,
       nickname,
     };
-    console.log(newChat);
-    setChatList((prevChatList) => [...prevChatList, newChat]);
-    console.log(chatList);
+    if (newChat.content) {
+      setChatList((prevChatList) => [...prevChatList, newChat]);
+      console.log(isLeave);
+    }
 
     if (type === 'close') {
-      console.log('closed');
+      setIsLeave(true);
+      console.log('종료');
     }
   };
 
@@ -109,7 +114,7 @@ const ChatPage: React.FC = () => {
     const subscribe = () => {
       client.current.subscribe(`/sub/chat/wait/${userId}`, (body) => {
         const watingRoomBody = JSON.parse(body.body) as WatingRoomBody;
-        const { type, roomId: newRoomId } = watingRoomBody;
+        const { type, roomId: newRoomId, matchedUserNickname } = watingRoomBody;
 
         if (type === 'open') {
           console.log('채팅 웨이팅 시작');
@@ -120,6 +125,7 @@ const ChatPage: React.FC = () => {
           subscribeAfterGetRoomId(newRoomId);
           setRoomId(newRoomId);
           setIsMatch(true);
+          setMatchedUserNicknameState(matchedUserNickname);
         }
       });
     };
@@ -160,15 +166,16 @@ const ChatPage: React.FC = () => {
       <div className={styles.ChatPage__form}>
         <div className={styles.ChatPage__form__participants}>
           <UserInfo user={userNickname} />
-          {isMatch ? (
-            <UserInfo user={userNickname} />
-          ) : (
-            <span>{selectedMbti}와의 채팅을 기다리는 중...</span>
-          )}
+          {isMatch && <UserInfo user={matchedUserNicknameState} />}
         </div>
 
         <div className={styles.ChatPage__form__chatform}>
           {/* 채팅 시작시 알림 */}
+          {isMatch && (
+            <StyledCurrentStatusMessage>
+              <span>채팅이 시작 되었습니다.</span>
+            </StyledCurrentStatusMessage>
+          )}
           <div className={styles.ChatPage__form__chatlist}>
             {chatList.map((chatt: Chat) => (
               <StyledMessage key={chatt.id} isMine={chatt.isMine}>
@@ -178,6 +185,11 @@ const ChatPage: React.FC = () => {
             ))}
           </div>
           {/* 채팅 종료시 알림 */}
+          {isLeave && (
+            <StyledCurrentStatusMessage>
+              <span>채팅이 종료 되었습니다.</span>
+            </StyledCurrentStatusMessage>
+          )}
           <ChatMessageForm
             publishAfterGetRoomId={publishAfterGetRoomId}
             handleChange={handleChange}
@@ -212,6 +224,21 @@ const StyledMessage = styled.div<StyledMessageProps>`
       padding: 5px 8px;
       background-color: #f2f2f2;
     }
+  }
+`;
+
+const StyledCurrentStatusMessage = styled.div`
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    width: 80%;
+    padding: 6px;
+    margin: 5px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: var(--chat-background-me);
   }
 `;
 
