@@ -35,7 +35,7 @@ const SidebarLogin = () => {
           </li>
           <li className={styles.Sidebar__content__letter2}>안녕하세요</li>
           <li className={styles.Sidebar__content__line}>
-            ____________________________________________________
+            <hr />
           </li>
           <li className={styles.Sidebar__content__letter3}>
             <Link to='/users/:userId' style={{ textDecoration: 'none' }}>

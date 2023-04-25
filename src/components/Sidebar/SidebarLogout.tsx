@@ -29,7 +29,7 @@ const SidebarLogout = () => {
             </Link>
           </li>
           <li className={styles.Sidebar__content__line}>
-            ____________________________________________________
+            <hr />
           </li>
           <li className={styles.Sidebar__content__letter3}>
             <Link to='/signup' style={{ textDecoration: 'none' }}>

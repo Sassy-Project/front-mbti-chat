@@ -54,9 +54,12 @@
       }
     }
     &__line {
-      margin-top: 10px;
-      font-size: 0.5rem;
-      color: rgb(214, 214, 214);
+      margin-top: 15px;
+      hr {
+        height: 0.5px;
+        border: 0;
+        background-color: grey;
+      }
     }
     &__letter3 {
       margin-top: 20px;
