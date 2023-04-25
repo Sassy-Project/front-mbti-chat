@@ -1,8 +1,16 @@
 @import '../../sass/abstracts/mixins';
 @import '../../main.scss';
 
+.Sidebar__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(171, 171, 171, 0.554);
+}
 .Sidebar {
-  border-left: 1px solid rgb(228, 228, 228);
+  border-left: 1px solid rgb(205, 205, 205);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -33,6 +41,9 @@
     &__letter1 {
       font-size: 1rem;
       font-weight: bold;
+      a {
+        color: black;
+      }
     }
     &__letter2 {
       margin-top: 14px;
@@ -49,10 +60,11 @@
     }
     &__letter3 {
       margin-top: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      cursor: pointer;
       a {
-        font-size: 0.7rem;
         color: black;
-        font-weight: bold;
       }
     }
   }
