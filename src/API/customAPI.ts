@@ -32,7 +32,7 @@ const axiosApi = ({ options }: any) => {
     }
   );
 
-  instance.defaults.timeout = 2500; // 2.5초
+  instance.defaults.timeout = 5000; // 5초
   return instance;
 };
 
