@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import Button from '../../components/styled-components/Button';
+import { useEffect, useState } from 'react';
+// import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
 import DesktopLogo from '../../assets/TextLogo';
 import ListIcon from '../../assets/ListIcon';
 import SidebarLogin from '../../components/Sidebar/SidebarLogin';
 import SidebarLogout from '../../components/Sidebar/SidebarLogout';
+import HeaderLogout from './HeaderLogout';
+import HeaderLogin from './HeaderLogin';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,12 +17,15 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
     if (localLength) {
       setIsLoginUser(true);
     } else {
       setIsLoginUser(false);
     }
-  };
+  }, [localLength]);
 
   return (
     <header className={styles.Header}>
@@ -35,15 +40,8 @@ const Header = () => {
         </button>
         <div className={styles.Header__nav__right}>
           <ModeToggle />
-          <Button
-            text='로그인'
-            onClick={() => navigate('/login')}
-            width='88px'
-            height='40px'
-            color='#000'
-            background='#fff'
-          />
-          <Button text='회원가입' onClick={() => navigate('/signup')} width='94px' height='40px' />
+          {isLoginUser ? <HeaderLogin /> : ''}
+          {!isLoginUser ? <HeaderLogout /> : ''}
         </div>
       </section>
     </header>

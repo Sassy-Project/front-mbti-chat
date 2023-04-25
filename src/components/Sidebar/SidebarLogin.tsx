@@ -7,6 +7,9 @@ const SidebarLogin = () => {
 
   const logout = () => {
     localStorage.clear();
+    // eslint-disable-next-line no-alert
+    alert('로그아웃 되었습니다');
+    window.location.reload();
   };
 
   return (
