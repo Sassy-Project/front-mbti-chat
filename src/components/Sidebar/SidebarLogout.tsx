@@ -22,13 +22,17 @@ const SidebarLogout = () => {
       <ul className={styles.Sidebar__content}>
         <li className={styles.Sidebar__content__letter1}>로그인 해주세요</li>
         <li className={styles.Sidebar__content__letter2}>
-          <Link to='/login'>로그인 {'>'}</Link>
+          <Link to='/login' style={{ textDecoration: 'none' }}>
+            로그인 {'>'}
+          </Link>
         </li>
         <li className={styles.Sidebar__content__line}>
           ____________________________________________________
         </li>
         <li className={styles.Sidebar__content__letter3}>
-          <Link to='/signup'>회원가입</Link>
+          <Link to='/signup' style={{ textDecoration: 'none' }}>
+            회원가입
+          </Link>
         </li>
       </ul>
     </div>

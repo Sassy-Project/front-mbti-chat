@@ -2,8 +2,7 @@ import styles from './Sidebar.module.scss';
 import { Link } from 'react-router-dom';
 
 const SidebarLogin = () => {
-  // 사용자 추가 수정 중
-  // 마이페이지 링크연결 수정 중
+  const userNickname = localStorage.getItem('nickname');
   return (
     <div className={styles.Sidebar}>
       <div className={styles.Sidebar__CloseIcon}>
@@ -22,13 +21,15 @@ const SidebarLogin = () => {
         />
       </div>
       <ul className={styles.Sidebar__content}>
-        <li className={styles.Sidebar__content__letter1}>사용자 고객님</li>
+        <li className={styles.Sidebar__content__letter1}>{userNickname} 고객님</li>
         <li className={styles.Sidebar__content__letter2}>안녕하세요</li>
         <li className={styles.Sidebar__content__line}>
           ____________________________________________________
         </li>
         <li className={styles.Sidebar__content__letter3}>
-          <Link to='/'>마이페이지</Link>
+          <Link to='/users/:userId' style={{ textDecoration: 'none' }}>
+            마이페이지
+          </Link>
         </li>
       </ul>
     </div>

@@ -31,12 +31,16 @@
     left: 12px;
     text-align: left;
     &__letter1 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
     }
     &__letter2 {
       margin-top: 14px;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
+      color: #737373;
+      a {
+        color: #737373;
+      }
     }
     &__line {
       margin-top: 10px;
@@ -45,7 +49,11 @@
     }
     &__letter3 {
       margin-top: 20px;
-      font-size: 0.8rem;
+      a {
+        font-size: 0.7rem;
+        color: black;
+        font-weight: bold;
+      }
     }
   }
 }
