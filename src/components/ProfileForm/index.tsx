@@ -1,15 +1,16 @@
 import { useState, SyntheticEvent, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { EMAIL_REQUIRE_CHECK, EMAIL_VALID_CHECK } from '../../constants/message';
 import LabelBasicInput from '../LabelBasicInput';
 import LabelBasicSelect from '../LabelBasicSelect';
 import Button from '../styled-components/Button';
 import API, { UpdateProfileData } from '../../API/API';
 import styles from './style.module.scss';
+import { regEmail } from '../../constants/regEx';
 
 interface ProfileFormData {
   loginId: string;
   nickname: string;
-  email: string;
   mbti: string;
   gender: string;
 }
@@ -36,10 +37,12 @@ const genderList: Array<string> = ['남', '여'];
 
 const ProfileForm = () => {
   const { userId } = useParams<string>();
+  const [userEmail, setUserEmail] = useState<string>('');
+  const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState<string>(EMAIL_REQUIRE_CHECK);
   const [userData, setUserData] = useState<ProfileFormData>({
     loginId: '',
     nickname: '',
-    email: '',
     mbti: '',
     gender: '',
   });
@@ -53,7 +56,7 @@ const ProfileForm = () => {
     const data: UpdateProfileData = {
       loginId: userData.loginId,
       nickname: userData.nickname,
-      email: userData.email,
+      email: userEmail,
       mbti: userData.mbti,
       gender: userData.gender,
       userId,
@@ -73,6 +76,31 @@ const ProfileForm = () => {
       [name]: value,
     }));
   };
+
+  const onChangeEmail = (e: SyntheticEvent<HTMLInputElement>) => {
+    setUserEmail(e.currentTarget.value);
+    setIsValidEmail(false);
+  };
+
+  const onBlurEmail = () => {
+    if (!userEmail) {
+      setIsValidEmail(true);
+      setEmailErrorMessage(EMAIL_REQUIRE_CHECK);
+    }
+  };
+
+  useEffect(() => {
+    // 디바운스 적용
+    const timer = setTimeout(() => {
+      if (!regEmail.test(userEmail)) {
+        setIsValidEmail(true);
+        setEmailErrorMessage(EMAIL_VALID_CHECK);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [userEmail]);
+
   useEffect(() => {
     const getProfile = async () => {
       const response = await API.getProfile({ userId });
@@ -107,8 +135,12 @@ const ProfileForm = () => {
         name='email'
         id='email'
         type='email'
-        value={userData.email}
-        onChange={onChangeUserData}
+        value={userEmail}
+        onChange={onChangeEmail}
+        hasError={isValidEmail}
+        onBlur={onBlurEmail}
+        placeholder='ex)email@naver.com'
+        errorMessage={emailErrorMessage}
       />
       <LabelBasicSelect
         label='mbti'
