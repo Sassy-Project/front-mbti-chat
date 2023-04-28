@@ -67,6 +67,8 @@ const ProfileForm = () => {
   const onSubmitForm = (e: SyntheticEvent) => {
     e.preventDefault();
     updateProfile();
+    // eslint-disable-next-line no-alert
+    alert('수정이 완료되었습니다');
   };
 
   const onChangeUserData = (e: SyntheticEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -145,6 +147,7 @@ const ProfileForm = () => {
       <LabelBasicSelect
         label='mbti'
         text='MBTI'
+        name='mbti'
         id='mbti'
         options={mbtiList}
         value={userData.mbti}
@@ -153,6 +156,7 @@ const ProfileForm = () => {
       <LabelBasicSelect
         label='gender'
         text='성별'
+        name='gender'
         id='gender'
         options={genderList}
         value={userData.gender}

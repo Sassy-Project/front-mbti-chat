@@ -334,6 +334,7 @@ const SignUpForm = () => {
         <LabelBasicSelect
           label='mbti'
           text='MBTI'
+          name='mbti'
           id='mbti'
           options={mbtiList}
           value={mbti}
@@ -345,6 +346,7 @@ const SignUpForm = () => {
         <LabelBasicSelect
           label='gender'
           text='성별'
+          name='gender'
           id='gender'
           options={genderList}
           value={gender}
