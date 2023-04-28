@@ -105,6 +105,7 @@ const ProfileForm = () => {
     const getProfile = async () => {
       const response = await API.getProfile({ userId });
       setUserData(response.data);
+      setUserEmail(response.data.email);
     };
     getProfile();
   }, [userId]);
@@ -118,7 +119,6 @@ const ProfileForm = () => {
         id='loginId'
         type='text'
         value={userData.loginId}
-        onChange={onChangeUserData}
       />
       <LabelBasicInput
         label='nickname'
