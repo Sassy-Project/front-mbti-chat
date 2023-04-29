@@ -67,6 +67,8 @@ const ProfileForm = () => {
   const onSubmitForm = (e: SyntheticEvent) => {
     e.preventDefault();
     updateProfile();
+    // eslint-disable-next-line no-alert
+    alert('수정이 완료되었습니다');
   };
 
   const onChangeUserData = (e: SyntheticEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -105,6 +107,7 @@ const ProfileForm = () => {
     const getProfile = async () => {
       const response = await API.getProfile({ userId });
       setUserData(response.data);
+      setUserEmail(response.data.email);
     };
     getProfile();
   }, [userId]);
@@ -118,7 +121,6 @@ const ProfileForm = () => {
         id='loginId'
         type='text'
         value={userData.loginId}
-        onChange={onChangeUserData}
       />
       <LabelBasicInput
         label='nickname'
@@ -145,6 +147,7 @@ const ProfileForm = () => {
       <LabelBasicSelect
         label='mbti'
         text='MBTI'
+        name='mbti'
         id='mbti'
         options={mbtiList}
         value={userData.mbti}
@@ -153,6 +156,7 @@ const ProfileForm = () => {
       <LabelBasicSelect
         label='gender'
         text='성별'
+        name='gender'
         id='gender'
         options={genderList}
         value={userData.gender}

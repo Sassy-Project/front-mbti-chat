@@ -37,12 +37,14 @@ const axiosApi = ({ options }: any) => {
 };
 
 const axiosAuthTokenApi = ({ options }: any) => {
-  const token = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
   const instance = axios.create({
     baseURL: APIbaseURL,
     ...options,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
+      RefreshToken: `Bearer ${refreshToken}`,
     },
   });
   instance.interceptors.response.use(

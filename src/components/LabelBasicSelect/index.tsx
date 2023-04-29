@@ -6,6 +6,7 @@ interface LabelBasicSelectProps {
   label: string;
   text: string;
   id: string;
+  name: string;
   value: string;
   options: string[];
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -15,13 +16,14 @@ interface LabelBasicSelectProps {
 }
 
 const LabelBasicSelect = (props: LabelBasicSelectProps) => {
-  const { label, text, id, value, options, onChange, onBlur, hasError, errorMessage } = props;
+  const { label, text, id, value, name, options, onChange, onBlur, hasError, errorMessage } = props;
   return (
     <div className={styles.FormContainer}>
       <Label htmlFor={label} text={text} />
       <BasicSelect
         id={id}
         value={value}
+        name={name}
         onChange={onChange}
         options={options}
         onBlur={onBlur}
