@@ -26,8 +26,8 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path='/mbtitestresult' element={<MbtiTestResult />} />
       <Route path='/users/:userId' element={<ProfilePage />} />
       <Route path='/signup' element={<SignUpPage />} />
-      <Route path='/findId' element={<FindIdPage />} />
-      <Route path='/findIdResult' element={<FindIdResult />} />
+      <Route path='/findid' element={<FindIdPage />} />
+      <Route path='/findidResult' element={<FindIdResult />} />
       <Route path='/findpw' element={<FindPwPage />} />
       <Route path='/findnewpw' element={<FindNewPwPage />} />
     </Routes>
