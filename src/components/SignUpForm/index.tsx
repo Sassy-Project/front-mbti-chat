@@ -10,12 +10,15 @@ import {
   PWCONFIRM_VALID_CHECK,
   EMAIL_REQUIRE_CHECK,
   MBTI_REQUIRE_CHECK,
+  EMAIL_VALID_CHECK,
+  EMAIL_OVERLAP_CHECK,
 } from '../../constants/message';
 import LabelBasicInput from '../LabelBasicInput';
 import LabelBasicSelect from '../LabelBasicSelect';
 import Button from '../styled-components/Button';
 import API from '../../API/API';
 import styles from './style.module.scss';
+import { regEmail } from '../../constants/regEx';
 
 // mbti Select option
 const mbtiList = [
@@ -71,25 +74,6 @@ const SignUpForm = () => {
     setIsValidLoginId(false);
   };
 
-  // LoginId useEffect
-  useEffect(() => {
-    if (loginId) {
-      const data = { loginId };
-      const response = API.checkId(data);
-      response
-        .then((res) => {
-          // eslint-disable-next-line no-console
-          console.log(res);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.log(error);
-          setIsValidLoginId(true);
-          setLoginIdErrorMessage(ID_OVERLAP_CHECK);
-        });
-    }
-  }, [loginId]);
-
   // Nickname onChange Event
   const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.currentTarget.value);
@@ -113,25 +97,6 @@ const SignUpForm = () => {
     setEmail(e.currentTarget.value);
     setIsValidEmail(false);
   };
-
-  // Email useEffect
-  useEffect(() => {
-    if (email) {
-      const data = { email };
-      const response = API.checkEmail(data);
-      response
-        .then((res) => {
-          // eslint-disable-next-line no-console
-          console.log(`성공이메일: + ${res}`);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.log(error);
-          setIsValidEmail(true);
-          setEmailErrorMessage(error.response.data.message);
-        });
-    }
-  }, [email]);
 
   // Mbti onChange Event select
   const onChangeMbti = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -196,11 +161,10 @@ const SignUpForm = () => {
       setEmailErrorMessage(EMAIL_REQUIRE_CHECK);
     }
 
-    // 이메일 유효성 검사
-    // if (!regEmail.test(email)) {
-    //   setIsValidEmail(true);
-    //   setEmailErrorMessage(EMAIL_VALID_CHECK);
-    // }
+    if (!regEmail.test(email)) {
+      setIsValidEmail(true);
+      setEmailErrorMessage(EMAIL_VALID_CHECK);
+    }
   };
 
   // MBTI onBlur Event
@@ -210,31 +174,6 @@ const SignUpForm = () => {
     }
   };
 
-  // form sign up Check button
-  const handleLastCheckClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault();
-    if (isValidLoginId === false && !loginId) {
-      setIsValidLoginId(true);
-    } else if (isValidNickname === false && !nickname) {
-      setIsValidNickname(true);
-    } else if (isValidPassword === false && !password) {
-      setIsValidPassword(true);
-    } else if (
-      (isValidPasswordConfirm === false && !passwordConfirm) ||
-      password !== passwordConfirm
-    ) {
-      setIsValidPasswordConfirm(true);
-    } else if (isValidEmail === false && !email) {
-      setIsValidEmail(true);
-    } else if (isValidMbti === false && mbti === mbtiList[0]) {
-      setIsValidMbti(true);
-    } else {
-      // Sign up API
-      // eslint-disable-next-line no-console
-      console.log('회원가입 성공 or 실패');
-      onSignUpHandler();
-    }
-  };
   // 회원가입 api
   const onSignUpHandler = () => {
     const data = {
@@ -262,6 +201,90 @@ const SignUpForm = () => {
         }
       });
   };
+
+  // form sign up Check button
+  const handleLastCheckClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    if (isValidLoginId === false && !loginId) {
+      setIsValidLoginId(true);
+    } else if (isValidNickname === false && !nickname) {
+      setIsValidNickname(true);
+    } else if (isValidPassword === false && !password) {
+      setIsValidPassword(true);
+    } else if (
+      (isValidPasswordConfirm === false && !passwordConfirm) ||
+      password !== passwordConfirm
+    ) {
+      setIsValidPasswordConfirm(true);
+    } else if (isValidEmail === false && !email) {
+      setIsValidEmail(true);
+    } else if (isValidMbti === false && mbti === mbtiList[0]) {
+      setIsValidMbti(true);
+    } else {
+      onSignUpHandler();
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const loginIdOverlapCheck = () => {
+    const data = { loginId };
+    const response = API.checkId(data);
+    response
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error);
+        setIsValidLoginId(true);
+        setLoginIdErrorMessage(ID_OVERLAP_CHECK);
+      });
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const emailOverlapCheck = () => {
+    const data = { email };
+    const response = API.checkEmail(data);
+    response
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error);
+        setIsValidEmail(true);
+        setEmailErrorMessage(EMAIL_OVERLAP_CHECK);
+      });
+  };
+
+  // loginId 중복 체크 useEffect, 디바운스 추가
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (loginId) {
+        loginIdOverlapCheck();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [loginId, loginIdOverlapCheck]);
+
+  // Email 유효성 체크 및 중복 체크, useEffect, 디바운스 추가
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (email && !regEmail.test(email)) {
+        setIsValidEmail(true);
+        setEmailErrorMessage(EMAIL_VALID_CHECK);
+        return;
+      }
+      if (email) {
+        emailOverlapCheck();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [email, emailOverlapCheck]);
 
   return (
     <div className={styles.SignUpForm}>
