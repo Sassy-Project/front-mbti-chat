@@ -45,6 +45,18 @@ interface GetLoginIdData {
   code: string;
 }
 
+interface findPasswordData {
+  code: string;
+  email: string;
+  loginId: string;
+}
+
+interface updateFindNewPasswordData {
+  newPassword: string;
+  newPasswordCheck: string;
+  userId: number;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
@@ -84,6 +96,16 @@ const API = {
 
   getLoginId: async (data: GetLoginIdData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/find/id`, data);
+    return response;
+  },
+
+  findPassword: async (data: findPasswordData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/find/password`, data);
+    return response;
+  },
+
+  updateFindNewPassword: async (data: updateFindNewPasswordData): Promise<AxiosResponse> => {
+    const response = await AuthTokenInstance.patch(`/users/find/new/password`, data);
     return response;
   },
 
