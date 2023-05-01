@@ -1,6 +1,10 @@
 import { useState, SyntheticEvent, useCallback, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { EMAIL_REQUIRE_CHECK, EMAIL_VALID_CHECK } from '../../constants/message';
+import {
+  EMAIL_REQUIRE_CHECK,
+  EMAIL_VALID_CHECK,
+  EMAIL_OVERLAP_CHECK,
+} from '../../constants/message';
 import LabelBasicInput from '../LabelBasicInput';
 import LabelBasicSelect from '../LabelBasicSelect';
 import Button from '../styled-components/Button';
@@ -64,14 +68,22 @@ const ProfileForm = () => {
       gender: userData.gender,
       userId,
     };
-    await API.updateProfile(data);
+    try {
+      await API.updateProfile(data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      if (error) {
+        setIsValidEmail(true);
+        setEmailErrorMessage(EMAIL_OVERLAP_CHECK);
+      }
+    }
   };
 
   const onSubmitForm = (e: SyntheticEvent) => {
     e.preventDefault();
-    updateProfile();
     // eslint-disable-next-line no-alert
     alert('수정이 완료되었습니다');
+    updateProfile();
   };
 
   const onChangeUserData = (e: SyntheticEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -123,6 +135,7 @@ const ProfileForm = () => {
   useEffect(() => {
     const getProfile = async () => {
       const response = await API.getProfile({ userId });
+      console.log(`res: ${response}`);
       setUserData(response.data);
       setUserEmail(response.data.email);
     };
@@ -133,7 +146,7 @@ const ProfileForm = () => {
     <div className={styles.ProfileForm}>
       <h2>회원정보 수정</h2>
       <div className={styles.support}>
-        <Link to='/' style={{ textDecoration: 'none' }}>
+        <Link to='/changepw' style={{ textDecoration: 'none' }}>
           비밀번호 변경
         </Link>
         <Link to='' style={{ textDecoration: 'none' }} onClick={onClickShowModal}>
