@@ -4,6 +4,7 @@ import CloseIcon from '../../assets/CloseIcon';
 
 const SidebarLogin = () => {
   const userNickname = localStorage.getItem('nickname');
+  const userId = localStorage.getItem('id');
 
   const logout = () => {
     localStorage.clear();
@@ -30,7 +31,7 @@ const SidebarLogin = () => {
             <hr />
           </li>
           <li className={styles.Sidebar__content__letter3}>
-            <Link to='/users/:userId' style={{ textDecoration: 'none' }}>
+            <Link to={`/users/${userId}`} style={{ textDecoration: 'none' }}>
               마이페이지
             </Link>
           </li>
