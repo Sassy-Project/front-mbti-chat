@@ -37,14 +37,11 @@ const axiosApi = ({ options }: any) => {
 };
 
 const axiosAuthTokenApi = ({ options }: any) => {
-  const accessToken = localStorage.getItem('accessToken');
-  const refreshToken = localStorage.getItem('refreshToken');
   const instance = axios.create({
     baseURL: APIbaseURL,
     ...options,
     headers: {
-      Authorization: `Bearer ${accessToken}`,
-      RefreshToken: `Bearer ${refreshToken}`,
+      Accept: 'application/json',
     },
   });
   instance.interceptors.response.use(
@@ -57,18 +54,22 @@ const axiosAuthTokenApi = ({ options }: any) => {
       return Promise.reject(error);
     }
   );
-
   instance.interceptors.request.use(
-    (request) => {
-      console.log('interceptor > request', request);
-      return request;
+    (config) => {
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+        config.headers.RefreshToken = `Bearer ${refreshToken}`;
+      }
+      console.log('interceptor > request', config);
+      return config;
     },
     (error) => {
       console.log('interceptor > error', error);
       return Promise.reject(error);
     }
   );
-
   instance.defaults.timeout = 2500; // 2.5초
   return instance;
 };

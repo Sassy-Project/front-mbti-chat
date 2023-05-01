@@ -84,11 +84,11 @@ const ChangePwForm = () => {
 
   return (
     <div className={styles.FindNewPwForm}>
-      <h2>비밀번호 변경 = {userId}</h2>
+      <h2>비밀번호 변경</h2>
       <form>
         <LabelBasicInput
           label='password'
-          text='현재 비밀번호'
+          text='기존 비밀번호'
           name='password'
           id='password'
           type='text'
@@ -96,7 +96,7 @@ const ChangePwForm = () => {
           onChange={onChange}
           onBlur={onBlurPassword}
           hasError={isValidPassword}
-          placeholder={passwordErrorMessage}
+          placeholder='기존의 비밀번호를 입력해주세요.'
           errorMessage={passwordErrorMessage}
         />
         <LabelBasicInput
