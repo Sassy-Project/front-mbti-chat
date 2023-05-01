@@ -61,6 +61,12 @@ interface signOutData {
   userId: string;
 }
 
+export interface changePasswordData {
+  userId?: string;
+  password: string;
+  updatePassword: string;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
@@ -115,6 +121,12 @@ const API = {
 
   deleteUserId: async (data: signOutData): Promise<AxiosResponse> => {
     const response = await AuthTokenInstance.delete(`users/${data.userId}`);
+    return response;
+  },
+
+  changePassword: async (data: changePasswordData): Promise<AxiosResponse> => {
+    const { userId, ...restData } = data;
+    const response = await AuthTokenInstance.patch(`/users/${userId}/password`, restData);
     return response;
   },
 
