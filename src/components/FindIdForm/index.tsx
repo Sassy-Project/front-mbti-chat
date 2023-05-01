@@ -103,6 +103,8 @@ const FindIdForm = () => {
       const response = await API.getLoginId(data);
       setLoginId(response.data.loginId);
     } catch (error) {
+      // eslint-disable-next-line no-alert
+      alert('인증코드 에러 또는 등록되지 않은 이메일 입니다.');
       setIsValidCode(true);
       setCodeErrorMessage(CODE_VALID_CHECK);
     }

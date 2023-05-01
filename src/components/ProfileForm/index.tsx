@@ -135,7 +135,6 @@ const ProfileForm = () => {
   useEffect(() => {
     const getProfile = async () => {
       const response = await API.getProfile({ userId });
-      console.log(`res: ${response}`);
       setUserData(response.data);
       setUserEmail(response.data.email);
     };

@@ -31,7 +31,7 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path='/findidResult' element={<FindIdResult />} />
       <Route path='/findpw' element={<FindPwPage />} />
       <Route path='/findnewpw' element={<FindNewPwPage />} />
-      <Route path='/changepw/:userId' element={<ChangePwPage />} />
+      <Route path='/changepw' element={<ChangePwPage />} />
     </Routes>
     <Footer />
   </BrowserRouter>
