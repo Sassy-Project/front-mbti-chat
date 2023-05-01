@@ -1,9 +1,13 @@
 import ProfileForm from '../../components/ProfileForm';
-import './style.scss';
+import SymbolTextLogo from '../../assets/SymbolTextLogo';
+import styles from './style.module.scss';
 
 const ProfilePage = () => {
   return (
-    <div className='ProfilePage'>
+    <div className={styles.ProfilePage}>
+      <h2>
+        <SymbolTextLogo />
+      </h2>
       <ProfileForm />
     </div>
   );

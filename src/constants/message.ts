@@ -12,3 +12,4 @@ export const EMAIL_OVERLAP_CHECK = '이메일 중복입니다.';
 export const MBTI_REQUIRE_CHECK = 'MBTI를 선택해주세요.';
 export const CODE_REQUIRE_CHECK = '인증코드를 입력해주세요.';
 export const CODE_VALID_CHECK = '인증번호를 확인해주세요.';
+export const SIGNUP_VALID_CHECK = '아이디 또는 비밀번호를 확인해주세요.';

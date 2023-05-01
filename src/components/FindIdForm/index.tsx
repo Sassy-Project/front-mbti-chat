@@ -103,8 +103,6 @@ const FindIdForm = () => {
       const response = await API.getLoginId(data);
       setLoginId(response.data.loginId);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(`에러:${error}`);
       setIsValidCode(true);
       setCodeErrorMessage(CODE_VALID_CHECK);
     }
@@ -112,7 +110,7 @@ const FindIdForm = () => {
 
   return (
     <div className={styles.FindIdForm}>
-      <h2>비밀번호 찾기</h2>
+      <h2>아이디 찾기</h2>
       <form>
         <LabelBasicInput
           label='email'

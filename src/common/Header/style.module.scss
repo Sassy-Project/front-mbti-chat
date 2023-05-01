@@ -79,6 +79,10 @@
   }
 }
 
+.modal__text {
+  margin-bottom: 20px;
+}
+
 @include tablet {
   .Header {
     &__nav {

@@ -288,6 +288,7 @@ const SignUpForm = () => {
 
   return (
     <div className={styles.SignUpForm}>
+      <h2>회원가입</h2>
       <form>
         <LabelBasicInput
           label='loginId'
