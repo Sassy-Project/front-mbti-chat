@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import ModeToggle from '../../components/styled-components/ModeToggle';
 import DesktopLogo from '../../assets/TextLogo';
