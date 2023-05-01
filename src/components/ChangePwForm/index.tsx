@@ -74,12 +74,18 @@ const ChangePwForm = () => {
       updatePassword,
       userId,
     };
-    const response = await API.changePassword(data);
-    // eslint-disable-next-line no-console
-    console.log(response);
-    // eslint-disable-next-line no-alert
-    alert('비밀번호가 변경되었습니다.');
-    navigate('/');
+
+    try {
+      const response = await API.changePassword(data);
+      // eslint-disable-next-line no-console
+      console.log(response);
+      // eslint-disable-next-line no-alert
+      alert('비밀번호가 변경되었습니다.');
+      navigate('/');
+    } catch (error) {
+      // eslint-disable-next-line no-alert
+      alert('기존 비밀번호를 확인해주세요.');
+    }
   };
 
   return (
