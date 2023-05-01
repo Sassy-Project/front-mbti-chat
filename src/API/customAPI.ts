@@ -1,4 +1,3 @@
-/* eslint-disable no-console */ // MVP완료되면 console.log는 지우겠습니다.
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
@@ -12,22 +11,18 @@ const axiosApi = ({ options }: any) => {
 
   instance.interceptors.response.use(
     (response) => {
-      console.log('interceptor > response', response);
       return response;
     },
     (error) => {
-      console.log('interceptor > error', error);
       return Promise.reject(error);
     }
   );
 
   instance.interceptors.request.use(
     (request) => {
-      console.log('interceptor > request', request);
       return request;
     },
     (error) => {
-      console.log('interceptor > error', error);
       return Promise.reject(error);
     }
   );
@@ -46,11 +41,9 @@ const axiosAuthTokenApi = ({ options }: any) => {
   });
   instance.interceptors.response.use(
     (response) => {
-      console.log('interceptor > response', response);
       return response;
     },
     (error) => {
-      console.log('interceptor > error', error);
       return Promise.reject(error);
     }
   );
@@ -62,11 +55,9 @@ const axiosAuthTokenApi = ({ options }: any) => {
         config.headers.Authorization = `Bearer ${accessToken}`;
         config.headers.RefreshToken = `Bearer ${refreshToken}`;
       }
-      console.log('interceptor > request', config);
       return config;
     },
     (error) => {
-      console.log('interceptor > error', error);
       return Promise.reject(error);
     }
   );
