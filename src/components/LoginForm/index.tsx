@@ -1,7 +1,7 @@
 import Button from '../styled-components/Button';
 import { useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ID_REQUIRE_CHECK, PW_REQUIRE_CHECK } from '../../constants/message';
+import { ID_REQUIRE_CHECK, PW_REQUIRE_CHECK, SIGNUP_VALID_CHECK } from '../../constants/message';
 import LabelBasicInput from '../LabelBasicInput';
 import styles from './style.module.scss';
 import API from '../../API/API';
@@ -27,9 +27,11 @@ const LoginForm = () => {
   // Valid
   const [isValidLoginId, setIsValidLoginId] = useState<boolean>(false);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
+  const [isValidSignUp, setIsValidSignUp] = useState<boolean>(false);
   // Error Message
   const [loginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK);
   const [passwordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
+  const [signUpErrorMessage] = useState<string>(SIGNUP_VALID_CHECK);
 
   // LoginId, password Change Event
   const onChange = useCallback(
@@ -68,6 +70,7 @@ const LoginForm = () => {
   // login action
   const onClickLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsValidSignUp(false);
     if (isValidLoginId === false && !loginId) {
       setIsValidLoginId(true);
       return;
@@ -82,13 +85,18 @@ const LoginForm = () => {
   // handleSubmit
   const handleSubmit = async () => {
     const data = { loginId, password };
-    const response = await API.logIn(data);
-    setLocalstorage(response);
-    navigate('/');
+    try {
+      const response = await API.logIn(data);
+      setLocalstorage(response);
+      navigate('/');
+    } catch (error) {
+      setIsValidSignUp(true);
+    }
   };
 
   return (
     <div className={styles.LoginForm}>
+      <h2>로그인</h2>
       <form>
         <LabelBasicInput
           label='loginId'
@@ -116,6 +124,7 @@ const LoginForm = () => {
           placeholder={PW_REQUIRE_CHECK}
           errorMessage={passwordErrorMessage}
         />
+        {isValidSignUp && <span className={styles.LoginForm__error}>{signUpErrorMessage}</span>}
         <Button text='로그인' onClick={onClickLogin} />
         <div className={styles.support}>
           <Link to='/findid' style={{ textDecoration: 'none' }}>

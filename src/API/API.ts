@@ -57,6 +57,10 @@ interface updateFindNewPasswordData {
   userId: number;
 }
 
+interface signOutData {
+  userId: string;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
@@ -106,6 +110,11 @@ const API = {
 
   updateFindNewPassword: async (data: updateFindNewPasswordData): Promise<AxiosResponse> => {
     const response = await AuthTokenInstance.patch(`/users/find/new/password`, data);
+    return response;
+  },
+
+  deleteUserId: async (data: signOutData): Promise<AxiosResponse> => {
+    const response = await AuthTokenInstance.delete(`users/${data.userId}`);
     return response;
   },
 

@@ -26,4 +26,11 @@
       }
     }
   }
+  &__error {
+    text-align: center;
+    display: block;
+    color: #bf0b0b;
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
 }

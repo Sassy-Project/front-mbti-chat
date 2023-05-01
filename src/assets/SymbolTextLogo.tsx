@@ -3,12 +3,12 @@ import styled from 'styled-components';
 interface SymbolProps {
   width?: string;
   height?: string;
-  filter?: boolean;
+  $filter?: boolean;
 }
 
-const SymbolTextLogo = ({ width, height, filter }: SymbolProps) => {
+const SymbolTextLogo = ({ width, height, $filter }: SymbolProps) => {
   return (
-    <StyledLogo className='SymbolTextLogo' filter={filter}>
+    <StyledLogo className='SymbolTextLogo' $filter={$filter}>
       <img
         src={`${process.env.PUBLIC_URL}/images/logo/symbol-text-logo.png`}
         width={width}
@@ -27,7 +27,7 @@ SymbolTextLogo.defaultProps = {
 const StyledLogo = styled.div<SymbolProps>`
   cursor: pointer;
   img {
-    filter: ${(props) => (props.filter ? 'grayscale(100%)' : 'none')};
+    filter: ${(props) => (props.$filter ? 'grayscale(100%)' : 'none')};
   }
 `;
 export default SymbolTextLogo;
