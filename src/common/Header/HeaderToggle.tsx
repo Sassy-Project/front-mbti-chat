@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
 import Modal from '../../components/styled-components/Modal';
 import { useState } from 'react';
