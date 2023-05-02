@@ -19,15 +19,19 @@ const HeaderToggle = () => {
     navigate('/');
     window.location.reload();
   };
+  const windowReload = () => {
+    navigate(`/users/${userId}`);
+    window.location.reload();
+  };
   return (
     <>
       <div className={styles.HeaderToggle}>
         <div className={styles.HeaderToggle__box}>
           <div className={styles.HeaderToggle__box__username}>{userNickname} 님</div>
           <div className={styles.HeaderToggle__box__mypage}>
-            <Link to={`/users/${userId}`} style={{ textDecoration: 'none' }}>
+            <div onClick={windowReload} role='presentation'>
               마이페이지
-            </Link>
+            </div>
           </div>
         </div>
         <div className={styles.HeaderToggle__logout} onClick={logout} role='presentation'>
