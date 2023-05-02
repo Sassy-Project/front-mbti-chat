@@ -1,19 +1,35 @@
 import styled from 'styled-components';
 
-const SymbolTextLogo = () => {
+interface SymbolProps {
+  width?: string;
+  height?: string;
+  $filter?: boolean;
+}
+
+const SymbolTextLogo = ({ width, height, $filter }: SymbolProps) => {
   return (
-    <StyledLogo className='SymbolTextLogo'>
-      <img src={`${process.env.PUBLIC_URL}/images/logo/symbol-text-logo.png`} alt='이미지' />
+    <StyledLogo className='SymbolTextLogo' $filter={$filter}>
+      <img
+        src={`${process.env.PUBLIC_URL}/images/logo/symbol-text-logo.png`}
+        width={width}
+        height={height}
+        alt='이미지'
+      />
     </StyledLogo>
   );
 };
 
-const StyledLogo = styled.div`
+SymbolTextLogo.defaultProps = {
+  width: '350px',
+  height: '100%',
+};
+
+const StyledLogo = styled.div<SymbolProps>`
   cursor: pointer;
+  ${(props) => (props.$filter ? 'none' : 'background-color: #fafafa')};
   img {
-    width: 162px;
-    height: 45px;
-    filter: grayscale(100%);
+    ${(props) => (props.$filter ? 'none' : 'background-color: #fafafa')};
+    filter: ${(props) => (props.$filter ? 'grayscale(100%)' : 'none')};
   }
 `;
 export default SymbolTextLogo;

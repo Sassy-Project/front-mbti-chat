@@ -9,6 +9,7 @@ interface InputProps {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   hasError?: boolean;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 const BasicInput = ({
@@ -20,6 +21,7 @@ const BasicInput = ({
   onBlur,
   hasError,
   placeholder,
+  disabled,
 }: InputProps) => {
   return (
     <div className='BasicInput'>
@@ -32,6 +34,7 @@ const BasicInput = ({
         onBlur={onBlur}
         hasError={hasError}
         placeholder={placeholder}
+        disabled={disabled}
       />
     </div>
   );

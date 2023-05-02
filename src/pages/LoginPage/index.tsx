@@ -1,10 +1,13 @@
 import LoginForm from '../../components/LoginForm';
-import './style.scss';
+import SymbolTextLogo from '../../assets/SymbolTextLogo';
+import styles from './style.module.scss';
 
 const LoginPage = () => {
   return (
-    <div className='LoginPage'>
-      <h2>로그인</h2>
+    <div className={styles.LoginPage}>
+      <h2>
+        <SymbolTextLogo />
+      </h2>
       <LoginForm />
     </div>
   );

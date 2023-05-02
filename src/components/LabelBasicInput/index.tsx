@@ -14,6 +14,7 @@ interface LabelBasicInputProps {
   hasError?: boolean;
   placeholder?: string;
   errorMessage?: string;
+  disabled?: boolean;
 }
 
 const LabelBasicInput = (props: LabelBasicInputProps) => {
@@ -29,6 +30,7 @@ const LabelBasicInput = (props: LabelBasicInputProps) => {
     hasError,
     placeholder,
     errorMessage,
+    disabled,
   } = props;
   return (
     <div className={styles.FormContainer}>
@@ -42,6 +44,7 @@ const LabelBasicInput = (props: LabelBasicInputProps) => {
         onBlur={onBlur}
         hasError={hasError}
         placeholder={placeholder}
+        disabled={disabled}
       />
       {hasError && <span className={styles.error}>{errorMessage}</span>}
     </div>

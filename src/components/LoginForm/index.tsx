@@ -1,9 +1,9 @@
 import Button from '../styled-components/Button';
-import { useState, SyntheticEvent } from 'react';
+import { useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ID_REQUIRE_CHECK, PW_REQUIRE_CHECK, PW_VALID_CHECK } from '../../constants/message';
+import { ID_REQUIRE_CHECK, PW_REQUIRE_CHECK, SIGNUP_VALID_CHECK } from '../../constants/message';
 import LabelBasicInput from '../LabelBasicInput';
-import './style.scss';
+import styles from './style.module.scss';
 import API from '../../API/API';
 import { AxiosResponse } from 'axios';
 
@@ -18,48 +18,44 @@ interface UserData {
 const LoginForm = () => {
   // hooks
   const navigate = useNavigate();
-  // login ID, PW
-  const [loginId, setLoginId] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  // inputs
+  const [inputs, setInputs] = useState({
+    loginId: '',
+    password: '',
+  });
+  const { loginId, password } = inputs;
   // Valid
   const [isValidLoginId, setIsValidLoginId] = useState<boolean>(false);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
+  const [isValidSignUp, setIsValidSignUp] = useState<boolean>(false);
   // Error Message
-  const [loginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK); // 추후 중복확인 체크 작업 진행
+  const [loginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK);
   const [passwordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
+  const [signUpErrorMessage] = useState<string>(SIGNUP_VALID_CHECK);
 
-  // LoginId Change Event
-  const onChangeLoginId = (e: SyntheticEvent<HTMLInputElement>) => {
-    setLoginId(e.currentTarget.value);
-    setIsValidLoginId(false);
+  // LoginId, password Change Event
+  const onChange = useCallback(
+    (e: { target: { name: string; value: string } }) => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs]
+  );
+
+  // LoginId onBlur Event
+  const onBlurLoginId = () => {
+    if (!loginId) setIsValidLoginId(true);
+    if (loginId) setIsValidLoginId(false);
   };
 
-  // Password Change Event
-  const onChangePassword = (e: SyntheticEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-    setIsValidPassword(false);
+  // Password onBlure Event
+  const onBlurPassword = () => {
+    if (!password) setIsValidPassword(true);
+    if (password) setIsValidPassword(false);
   };
-
-  // // LoginId onBlur Event
-  // const onBlurLoginId = () => {
-  //   if (!loginId) {
-  //     setIsValidLoginId(true);
-  //   }
-  // };
-
-  // // Password onBlure Event
-  // const onBlurPassword = () => {
-  //   if (!password) {
-  //     setIsValidPassword(true);
-  //     setPasswordErrorMessage(PW_REQUIRE_CHECK);
-  //     return;
-  //   }
-
-  //   if (password.length < 8) {
-  //     setIsValidPassword(true);
-  //     setPasswordErrorMessage(PW_VALID_CHECK);
-  //   }
-  // };
 
   // Set localstorage
   const setLocalstorage = (response: AxiosResponse<UserData>) => {
@@ -71,23 +67,36 @@ const LoginForm = () => {
     localStorage.setItem('refreshToken', refreshToken);
   };
 
-  // API
-  const handleLoginClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  // login action
+  const onClickLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsValidSignUp(false);
     if (isValidLoginId === false && !loginId) {
       setIsValidLoginId(true);
-    } else if (isValidPassword === false && !password) {
+      return;
+    }
+    if (isValidPassword === false && !password) {
       setIsValidPassword(true);
-    } else {
-      const data = { loginId, password };
+      return;
+    }
+    handleSubmit();
+  };
+
+  // handleSubmit
+  const handleSubmit = async () => {
+    const data = { loginId, password };
+    try {
       const response = await API.logIn(data);
       setLocalstorage(response);
       navigate('/');
+    } catch (error) {
+      setIsValidSignUp(true);
     }
   };
 
   return (
-    <div className='LoginForm'>
+    <div className={styles.LoginForm}>
+      <h2>로그인</h2>
       <form>
         <LabelBasicInput
           label='loginId'
@@ -96,8 +105,8 @@ const LoginForm = () => {
           id='loginId'
           type='text'
           value={loginId}
-          onChange={onChangeLoginId}
-          // onBlur={onBlurLoginId}
+          onChange={onChange}
+          onBlur={onBlurLoginId}
           hasError={isValidLoginId}
           placeholder={ID_REQUIRE_CHECK}
           errorMessage={loginIdErrorMessage}
@@ -109,18 +118,22 @@ const LoginForm = () => {
           id='password'
           type='password'
           value={password}
-          onChange={onChangePassword}
-          // onBlur={onBlurPassword}
+          onChange={onChange}
+          onBlur={onBlurPassword}
           hasError={isValidPassword}
-          placeholder={PW_VALID_CHECK}
+          placeholder={PW_REQUIRE_CHECK}
           errorMessage={passwordErrorMessage}
         />
-        <Button text='로그인' onClick={handleLoginClick} />
-        <div className='LoginSupport'>
-          <Link to='/login' style={{ textDecoration: 'none' }}>
+        {isValidSignUp && <span className={styles.LoginForm__error}>{signUpErrorMessage}</span>}
+        <Button text='로그인' onClick={onClickLogin} />
+        <div className={styles.support}>
+          <Link to='/findid' style={{ textDecoration: 'none' }}>
+            아이디 찾기
+          </Link>
+          <Link to='/findpw' style={{ textDecoration: 'none' }}>
             비밀번호 찾기
           </Link>
-          <Link to='/login' style={{ textDecoration: 'none' }}>
+          <Link to='/signup' style={{ textDecoration: 'none' }}>
             회원가입 하기
           </Link>
         </div>

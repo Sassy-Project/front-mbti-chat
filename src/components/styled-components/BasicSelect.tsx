@@ -3,15 +3,23 @@ import styled from 'styled-components';
 interface SelectProps {
   id: string;
   value: string;
+  name: string;
   options: string[];
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
   hasError?: boolean;
 }
 
-const Select = ({ id, value, options, onChange, onBlur, hasError }: SelectProps) => {
+const Select = ({ id, value, name, options, onChange, onBlur, hasError }: SelectProps) => {
   return (
-    <StyledSelect id={id} value={value} onChange={onChange} onBlur={onBlur} hasError={hasError}>
+    <StyledSelect
+      id={id}
+      value={value}
+      name={name}
+      onChange={onChange}
+      onBlur={onBlur}
+      hasError={hasError}
+    >
       {options.map((option) => (
         <option key={option} value={option}>
           {option}

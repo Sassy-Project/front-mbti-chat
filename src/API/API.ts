@@ -36,6 +36,37 @@ interface CheckEmailData {
   email: string;
 }
 
+interface CheckEmailCodeData {
+  email: string;
+}
+
+interface GetLoginIdData {
+  email: string;
+  code: string;
+}
+
+interface findPasswordData {
+  code: string;
+  email: string;
+  loginId: string;
+}
+
+interface updateFindNewPasswordData {
+  newPassword: string;
+  newPasswordCheck: string;
+  userId: number;
+}
+
+interface signOutData {
+  userId: string;
+}
+
+export interface changePasswordData {
+  userId?: string;
+  password: string;
+  updatePassword: string;
+}
+
 const API = {
   signUp: async (data: SignUpData): Promise<AxiosResponse> => {
     const response = await defaultInstance.post(`users/signup`, data);
@@ -65,6 +96,37 @@ const API = {
 
   getProfile: async (data: GetProfileData): Promise<AxiosResponse> => {
     const response = await AuthTokenInstance.get(`users/${data.userId}`);
+    return response;
+  },
+
+  checkEmailCode: async (email: CheckEmailCodeData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/email`, email);
+    return response;
+  },
+
+  getLoginId: async (data: GetLoginIdData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/find/id`, data);
+    return response;
+  },
+
+  findPassword: async (data: findPasswordData): Promise<AxiosResponse> => {
+    const response = await defaultInstance.post(`users/find/password`, data);
+    return response;
+  },
+
+  updateFindNewPassword: async (data: updateFindNewPasswordData): Promise<AxiosResponse> => {
+    const response = await AuthTokenInstance.patch(`/users/find/new/password`, data);
+    return response;
+  },
+
+  deleteUserId: async (data: signOutData): Promise<AxiosResponse> => {
+    const response = await AuthTokenInstance.delete(`users/${data.userId}`);
+    return response;
+  },
+
+  changePassword: async (data: changePasswordData): Promise<AxiosResponse> => {
+    const { userId, ...restData } = data;
+    const response = await AuthTokenInstance.patch(`/users/${userId}/password`, restData);
     return response;
   },
 
