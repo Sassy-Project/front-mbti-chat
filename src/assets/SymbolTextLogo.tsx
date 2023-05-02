@@ -26,7 +26,9 @@ SymbolTextLogo.defaultProps = {
 
 const StyledLogo = styled.div<SymbolProps>`
   cursor: pointer;
+  ${(props) => (props.$filter ? 'none' : 'background-color: #fafafa')};
   img {
+    ${(props) => (props.$filter ? 'none' : 'background-color: #fafafa')};
     filter: ${(props) => (props.$filter ? 'grayscale(100%)' : 'none')};
   }
 `;
