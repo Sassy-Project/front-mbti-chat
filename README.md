@@ -14,7 +14,7 @@
 ## Contributors
 |이름|맡은 파트|github|
 |---|---|---|
-|이지윤|초기 협업환경세팅, MBTI Chat 기능 구현 |[지윤 github](https://github.com/1yoouoo)|
+|이지윤|초기환경세팅, MBTI Chat 기능 구현 |[지윤 github](https://github.com/1yoouoo)|
 |김다정|메인페이지(반응형, 사이드 메뉴바 등), MBTI 테스트 기능 구현 |[다정 github](https://github.com/danakim530)|
 |정희섭|화면구성도, 마이페이지 구현 |[희섭 github](https://github.com/Eriniss)|
 |양동준|화면구성도, 로그인/회원가입 form validation 구현 |[동준 github](https://github.com/dongjoonyang)|
@@ -28,11 +28,12 @@
 ### MBTI 검사
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/124070996/236615668-35f5921e-395d-425e-adf0-05fc38d633f5.gif"/>
+  <img src="https://user-images.githubusercontent.com/124070996/236617141-bc40677c-e995-46f5-93f4-1c1344ec8ca0.gif"/>
 </p>
 <br/>
 
 ### 메인 페이지
+
 
 ### 로그인 & 회원가입
 
