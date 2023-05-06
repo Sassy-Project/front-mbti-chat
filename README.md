@@ -5,6 +5,9 @@
 
 💬 React.js, Sass, styled-components, TypeScript를 활용하여 MBTI별 채팅, MBTI 테스트, 로그인 및 회원가입 등을 구현한 웹사이트입니다. 
 
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/124070996/236616186-bfaf628c-2a3a-4108-8484-c1e5daa46242.gif)
+
+
 ## Contributors
 |이름|맡은 파트|github|
 |---|---|---|
@@ -15,6 +18,7 @@
 
 ## Features
 ### [초기 MBTI CHAT 화면 구성도](https://www.figma.com/file/D0NYPYYg1owUOKOQZPiCwx/Project-Ssasy?node-id=0-1&t=g00ya5lGmWJtwgqf-0)
+
 
 ### MBTI 채팅 
 
