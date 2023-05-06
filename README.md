@@ -36,6 +36,11 @@
 
 ### 로그인 & 회원가입
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/124070996/236616351-ee40868a-7f7d-41e1-a6ce-546fb14c6627.gif"/>
+</p>
+<br/>
+
 ### 마이페이지
 
 ___
