@@ -20,6 +20,11 @@
 
 ### MBTI 검사
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/124070996/236615668-35f5921e-395d-425e-adf0-05fc38d633f5.gif"/>
+</p>
+<br/>
+
 ### 메인 페이지
 
 ### 로그인 & 회원가입
