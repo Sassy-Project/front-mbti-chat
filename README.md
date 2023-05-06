@@ -22,13 +22,12 @@
 ## Features
 ### [초기 MBTI CHAT 화면 구성도](https://www.figma.com/file/D0NYPYYg1owUOKOQZPiCwx/Project-Ssasy?node-id=0-1&t=g00ya5lGmWJtwgqf-0)
 
-
 ### MBTI 채팅 
 
 ### MBTI 검사
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/124070996/236617141-bc40677c-e995-46f5-93f4-1c1344ec8ca0.gif"/>
+  <img src="https://user-images.githubusercontent.com/124070996/236617240-7e7d2397-bd04-4c84-a9f4-185dc24aa3b5.gif"/>
 </p>
 <br/>
 
