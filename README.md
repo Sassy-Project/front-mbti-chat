@@ -1,3 +1,53 @@
+# front-mbti-chat
+
+## Description
+4명의 프론트엔드, 3명의 백엔드 개발자의 협업 프로젝트!
+
+💬 React.js, Sass, styled-components, TypeScript를 활용하여 MBTI별 채팅, MBTI 테스트, 로그인 및 회원가입 등을 구현한 웹사이트입니다. 
+
+## Contributors
+|이름|맡은 파트|github|
+|---|---|---|
+|이지윤|초기 협업 세팅, MBTI Chat 기능 구현 |[지윤 github](https://github.com/1yoouoo)|
+|김다정|메인페이지, MBTI 테스트 기능 구현 |[다정 github](https://github.com/danakim530)|
+|정희섭|화면구성도, 마이페이지 구현 |[희섭 github](https://github.com/Eriniss)|
+|양동준|화면구성도, 로그인/회원가입 form validation 구현 |[동준 github](https://github.com/dongjoonyang)|
+
+## Features
+### [초기 MBTI CHAT 화면 구성도](https://www.figma.com/file/D0NYPYYg1owUOKOQZPiCwx/Project-Ssasy?node-id=0-1&t=g00ya5lGmWJtwgqf-0)
+
+### MBTI 채팅 
+
+### MBTI 검사
+
+### 메인 페이지
+
+### 로그인 & 회원가입
+
+### 마이페이지
+
+___
+**진행 과정**
+- 백엔드 3명, 프론트 4명으로 구성된 팀 프로젝트로 Slack, Notion 등의 Communication Tool 을 활용하여 협업했습니다.
+- Swagger API 문서를 기반으로 백엔드 분들과 함께 소통하며 작업했습니다.
+- 매주 주 3회 정기모임을 가지며 백엔드와 프론트엔드 사이의 진도를 조율했습니다.
+
+**구현한 기능** 
+- 디자인
+  - Figma를 이용한 UI/UX 설계 
+  - SASS를 이용한 반응형 웹 디자인 구현
+- 초기 세팅
+  - 타입스크립트, eslint를 통한 버그 관리
+- 회원정보
+  - ID/PW찾기, 회원가입, 로그인 관련 form validation 구현
+  - 로그인한 유저의 token관리
+- MBTI 채팅 
+  - 양방향 통신 채팅 기능
+- MBTI 테스트 
+  - 16개의 Mbti 검사 기능
+
+
+___
 # VscodeExtention
 - 필수
   - Eslint
