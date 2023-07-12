@@ -14,13 +14,39 @@
 ## Contributors
 |이름|맡은 파트|github|
 |---|---|---|
-|이지윤|초기환경세팅, MBTI Chat 기능 구현 |[지윤 github](https://github.com/1yoouoo)|
+|이지윤|초기환경세팅, MBTI별 채팅 기능 구현 |[지윤 github](https://github.com/1yoouoo)|
 |김다정|메인페이지(반응형, 사이드 메뉴바 등), MBTI 테스트 기능 구현 |[다정 github](https://github.com/danakim530)|
 |정희섭|화면구성도, 마이페이지 구현 |[희섭 github](https://github.com/Eriniss)|
-|양동준|화면구성도, 로그인/회원가입 form validation 구현 |[동준 github](https://github.com/dongjoonyang)|
+|양동준|화면구성도, 로그인/회원가입 구현 |[동준 github](https://github.com/dongjoonyang)|
 
 ## Features
 ### [초기 MBTI CHAT 화면 구성도](https://www.figma.com/file/D0NYPYYg1owUOKOQZPiCwx/Project-Ssasy?node-id=0-1&t=g00ya5lGmWJtwgqf-0)
+
+### 메인페이지
+<p align="center">
+ <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/ae3f0905-1829-4c53-92ef-b07a948cbc0a"/>
+</p>
+<br/>
+
+#### 반응형
+<p align="center">
+ <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/80153fdb-1543-42a3-a942-4b7a6e9fd5ef"/>
+</p>
+<br/>
+
+#### 모바일/태블릿 사이드바 (비로그인 사용자)
+<p align="center">
+ <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/2dd74091-c57f-439c-85a7-fdf2e534d97f"/>
+</p>
+<br/>
+
+#### 모바일/태블릿 사이드바 (로그인 사용자)
+<p align="center">
+ <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/160a78ec-fe57-4087-bb22-b1155ce683ce"/>
+</p>
+<br/>
+<br/>
+
 
 ### 캐러셀
 
@@ -45,33 +71,66 @@
     return currentIndex - matchingIndex;
   };
 ```
+<br/>
+<br/>
 
-
-### MBTI 채팅
+### MBTI별 채팅
 #### Stomp 라이브러리를 이용해서 채팅 구현
+
 <p align="center">
- <img src="https://user-images.githubusercontent.com/79697414/236617258-dd1de0c7-c045-432a-86e6-6af731246688.gif"/>
+ <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/99a93c27-4b54-45f7-a156-5e8b543d8174"/>
 </p>
+<br/>
+<br/>
 
 ### MBTI 검사
-
+#### 닉네임 입력 후, 테스트 시작 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/124070996/236617240-7e7d2397-bd04-4c84-a9f4-185dc24aa3b5.gif"/>
 </p>
 <br/>
 
-### 메인 페이지
-
+#### MBTI 검사 결과지(16개 종류)
+<p align="center">
+  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/70011ca5-18c3-4625-86a6-304d72638f22"/>
+</p>
+<br/>
+<br/>
 
 ### 로그인 & 회원가입
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/124070996/236616351-ee40868a-7f7d-41e1-a6ce-546fb14c6627.gif"/>
 </p>
 <br/>
+<p align="center">
+  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/ccf63631-d5ab-4b7a-974b-414272f80973"/>
+</p>
+<br/>
+
+### 아이디/비밀번호 찾기
+<p align="center">
+  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/101e42b2-a84a-4211-9664-a9692a1a50cc"/>
+</p>
+<br/>
 
 ### 마이페이지
+<p align="center">
+  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/ddd109a0-c167-4fff-a19a-1091ae555054"/>
+</p>
+<br/>
 
+### 비밀번호 변경
+<p align="center">
+  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/aae13442-3394-425a-ad0c-93a0729e5469"/>
+</p>
+<br/>
+
+### 회원 탈퇴
+<p align="center">
+  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/849b597e-3759-4e7a-b637-fb1d1240e290"/>
+</p>
+<br/>
+<br/>
 ___
 **진행 과정**
 - 백엔드 3명, 프론트 4명으로 구성된 팀 프로젝트로 Slack, Notion 등의 Communication Tool 을 활용하여 협업했습니다.
