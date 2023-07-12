@@ -1,15 +1,14 @@
 # front-mbti-chat
 
-## Description
-4명의 프론트엔드, 3명의 백엔드 개발자의 협업 프로젝트!
-
-💬 React.js, Sass, styled-components, TypeScript를 활용하여 MBTI별 채팅, MBTI 테스트, 로그인 및 회원가입 등을 구현한 웹사이트입니다. 
-
 <p align="center">
  <img src="https://user-images.githubusercontent.com/124070996/236616186-bfaf628c-2a3a-4108-8484-c1e5daa46242.gif"/>
   </p>
 <br/>
 
+## Description
+4명의 프론트엔드, 3명의 백엔드 개발자의 협업 프로젝트!
+
+💬 React.js, Sass, styled-components, TypeScript를 활용하여 MBTI별 채팅, MBTI 테스트, 로그인 및 회원가입 등을 구현한 웹사이트입니다. 
 
 ## Contributors
 |이름|맡은 파트|github|
@@ -22,7 +21,7 @@
 ## Features
 ### [초기 MBTI CHAT 화면 구성도](https://www.figma.com/file/D0NYPYYg1owUOKOQZPiCwx/Project-Ssasy?node-id=0-1&t=g00ya5lGmWJtwgqf-0)
 
-### 메인페이지
+### 1. 메인페이지
 <p align="center">
  <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/ae3f0905-1829-4c53-92ef-b07a948cbc0a"/>
 </p>
@@ -46,9 +45,9 @@
 </p>
 <br/>
 <br/>
+<hr/>
 
-
-### 캐러셀
+### 2. 캐러셀
 
 #### 기능 구현
 1. 각 카드를 1개처럼 겹쳐 놓음
@@ -73,8 +72,9 @@
 ```
 <br/>
 <br/>
+<hr/>
 
-### MBTI별 채팅
+### 3. MBTI별 채팅
 #### Stomp 라이브러리를 이용해서 채팅 구현
 
 <p align="center">
@@ -82,8 +82,9 @@
 </p>
 <br/>
 <br/>
+<hr/>
 
-### MBTI 검사
+### 4. MBTI 검사
 #### 닉네임 입력 후, 테스트 시작 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/124070996/236617240-7e7d2397-bd04-4c84-a9f4-185dc24aa3b5.gif"/>
@@ -96,8 +97,9 @@
 </p>
 <br/>
 <br/>
+<hr/>
 
-### 로그인 & 회원가입
+### 5. 로그인 & 회원가입
 <p align="center">
   <img src="https://user-images.githubusercontent.com/124070996/236616351-ee40868a-7f7d-41e1-a6ce-546fb14c6627.gif"/>
 </p>
@@ -107,30 +109,31 @@
 </p>
 <br/>
 
-### 아이디/비밀번호 찾기
+#### 아이디/비밀번호 찾기
 <p align="center">
   <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/101e42b2-a84a-4211-9664-a9692a1a50cc"/>
 </p>
 <br/>
 
-### 마이페이지
+#### 마이페이지
 <p align="center">
   <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/ddd109a0-c167-4fff-a19a-1091ae555054"/>
 </p>
 <br/>
 
-### 비밀번호 변경
+#### 비밀번호 변경
 <p align="center">
   <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/aae13442-3394-425a-ad0c-93a0729e5469"/>
 </p>
 <br/>
 
-### 회원 탈퇴
+#### 회원 탈퇴
 <p align="center">
   <img src="https://github.com/Sassy-Project/front-mbti-chat/assets/124070996/849b597e-3759-4e7a-b637-fb1d1240e290"/>
 </p>
 <br/>
 <br/>
+<hr/>
 
 **진행 과정**
 - 백엔드 3명, 프론트 4명으로 구성된 팀 프로젝트로 Slack, Notion 등의 Communication Tool 을 활용하여 협업했습니다.
